@@ -15,9 +15,6 @@ const RenderModule = (() => {
   }
 
   function renderHero(site) {
-    document.getElementById("heroBadge").innerHTML =
-      `<span class="badge__dot"></span>${site.hero.badge}`;
-
     document.getElementById("heroTitle").innerHTML = site.hero.titleLines
       .map((line) => `<span class="reveal-line"><span class="reveal-inner">${line}</span></span>`)
       .join("");
@@ -79,12 +76,18 @@ const RenderModule = (() => {
           data-id="${p.id}" data-title="${p.title}" data-year="${p.year}"
           data-cat-label="${p.catLabel}" data-desc="${p.desc}" data-tools="${p.tools}">
           <div class="card__media card__media--${(i % 6) + 1}">
+            <span class="card__index">${String(i + 1).padStart(2, "0")}</span>
             <span class="card__letter">${p.letter}</span>
+            <span class="card__view" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 13 13 3M5 3h8v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
           </div>
           <div class="card__body">
+            <div class="card__head">
+              <h3 class="card__title">${p.title}</h3>
+              <span class="card__year">${p.year}</span>
+            </div>
             <span class="card__cat">${p.catLabel.split(" · ")[0]}</span>
-            <h3 class="card__title">${p.title}</h3>
-            <span class="card__year">${p.year}</span>
           </div>
         </article>`
       )

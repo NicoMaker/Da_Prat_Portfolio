@@ -88,6 +88,28 @@
   background: var(--section-color, var(--accent));
   transition: background-color 0.45s var(--ease);
 }
+.mobile-menu__close {
+  position: absolute;
+  top: 26px;
+  right: 28px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: var(--bg);
+  border: 1px solid rgba(239, 238, 233, 0.25);
+  transition:
+    background 0.3s var(--ease),
+    border-color 0.3s var(--ease),
+    transform 0.3s var(--ease);
+}
+.mobile-menu__close:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  transform: rotate(90deg);
+}
 .mobile-menu__links {
   display: flex;
   flex-direction: column;
@@ -180,7 +202,7 @@
 .hero__top {
   display: flex;
   align-items: flex-start;
-  justify-content: space-between;
+  justify-content: flex-end;
   gap: 20px;
   flex-wrap: wrap;
   width: 100%;
@@ -192,22 +214,6 @@
     width: 76px;
     height: 76px;
   }
-}
-
-.badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  padding: 8px 16px;
-  font-size: 0.82rem;
-}
-.badge__dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: #3fa15a;
 }
 
 .stamp {
@@ -463,43 +469,90 @@
   border-color: var(--ink);
 }
 
-/* ---------- PROJECT CARD ---------- */
+/* ---------- PROJECT CARD (tile stile editoriale, ispirato a Raum Studio) ---------- */
 .card {
-  background: var(--paper);
-  border-radius: var(--radius);
-  overflow: hidden;
-  border: 1px solid var(--line);
   cursor: pointer;
-  transition:
-    transform 0.4s var(--ease),
-    box-shadow 0.4s var(--ease);
-}
-.card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 24px 48px rgba(23, 24, 26, 0.1);
+  background: none;
+  border: none;
 }
 .card__media {
-  aspect-ratio: 4/3;
+  position: relative;
+  aspect-ratio: 4/5;
   display: flex;
   align-items: center;
   justify-content: center;
   background: linear-gradient(135deg, var(--accent-soft), var(--bg-alt));
   overflow: hidden;
+  border-radius: 18px;
+  isolation: isolate;
+}
+.card__media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 55%, rgba(23, 24, 26, 0.55) 100%);
+  opacity: 0;
+  transition: opacity 0.45s var(--ease);
+}
+.card:hover .card__media::after {
+  opacity: 1;
 }
 .card__letter {
   font-family: var(--font-serif);
-  font-size: 5rem;
-  color: rgba(23, 24, 26, 0.25);
-  transition: transform 0.5s var(--ease);
+  font-size: 5.5rem;
+  color: rgba(23, 24, 26, 0.22);
+  transition: transform 0.6s var(--ease);
 }
 .card:hover .card__letter {
-  transform: scale(1.12) rotate(-4deg);
+  transform: scale(1.08) rotate(-3deg);
+}
+.card__index {
+  position: absolute;
+  top: 16px;
+  left: 18px;
+  z-index: 2;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--ink-soft);
+}
+.card__view {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 2;
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--paper);
+  color: var(--ink);
+  opacity: 0;
+  transform: translate(-6px, 6px) scale(0.8);
+  transition:
+    opacity 0.35s var(--ease),
+    transform 0.35s var(--ease);
+}
+.card:hover .card__view {
+  opacity: 1;
+  transform: translate(0, 0) scale(1);
+}
+.card:hover .card__media img {
+  transform: scale(1.05);
 }
 .card__body {
-  padding: 20px 22px 24px;
+  padding: 18px 2px 0;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 6px;
+}
+.card__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
 }
 .card__cat {
   font-size: 0.74rem;
@@ -509,11 +562,16 @@
   font-weight: 700;
 }
 .card__title {
-  font-size: 1.25rem;
+  font-size: 1.3rem;
+  transition: color 0.3s var(--ease);
+}
+.card:hover .card__title {
+  color: var(--accent);
 }
 .card__year {
-  font-size: 0.8rem;
+  font-size: 0.82rem;
   color: var(--ink-soft);
+  white-space: nowrap;
 }
 .card.is-hidden {
   display: none;
@@ -757,11 +815,4 @@
 .modal__tools-label {
   font-weight: 700;
   margin-right: 8px;
-}
-
-
-.badge,
-#mobileMenuBackdrop
-{
-  display:none;
 }

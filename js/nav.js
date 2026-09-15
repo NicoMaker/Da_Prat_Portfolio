@@ -16,13 +16,14 @@ const NavModule = (() => {
       .map((item) => `<a href="${item.href}" class="mobile-menu__link" data-href="${item.href}" data-color="${item.color}">${item.label}</a>`)
       .join("");
 
-    mobileFoot.innerHTML = `<span>${navData.hero.badge}</span>`;
+    mobileFoot.innerHTML = `<span>${navData.footer.copyright}</span>`;
   }
 
   function initHamburger() {
     const burger = document.getElementById("navBurger");
     const menu = document.getElementById("mobileMenu");
     const backdrop = document.getElementById("mobileMenuBackdrop");
+    const closeBtn = document.getElementById("mobileMenuClose");
 
     function close() {
       burger.setAttribute("aria-expanded", "false");
@@ -41,6 +42,7 @@ const NavModule = (() => {
       const isOpen = burger.getAttribute("aria-expanded") === "true";
       isOpen ? close() : open();
     });
+    closeBtn.addEventListener("click", close);
     backdrop.addEventListener("click", close);
     menu.addEventListener("click", (e) => {
       if (e.target.tagName === "A") close();
