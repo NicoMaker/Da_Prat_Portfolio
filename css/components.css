@@ -760,7 +760,8 @@
 }
 
 
-.badge
+.badge,
+#mobileMenuBackdrop
 {
   display:none;
 }
