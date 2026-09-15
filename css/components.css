@@ -15,7 +15,7 @@
 
 /* ---------- HAMBURGER ---------- */
 .nav__burger {
-  width: 40px; height: 40px;
+  width: 44px; height: 44px;
   flex-direction: column; align-items: center; justify-content: center; gap: 5px;
   z-index: 210;
 }
@@ -110,10 +110,17 @@
 .hero__bottom { display: flex; align-items: flex-end; justify-content: space-between; gap: 40px; flex-wrap: wrap; }
 .hero__desc { max-width: 44ch; font-size: 1.05rem; color: var(--ink-soft); }
 .hero__actions { display: flex; gap: 14px; flex-wrap: wrap; }
+@media (max-width: 560px) {
+  .hero { padding-top: 120px; }
+  .hero__actions { width: 100%; flex-direction: column; }
+  .hero__actions .btn { width: 100%; justify-content: center; }
+  .hero__scroll { display: none; }
+}
 
 .hero__scroll {
-  position: absolute; bottom: 32px; left: 32px;
-  display: flex; align-items: center; gap: 10px;
+  position: absolute; bottom: 32px; left: 50%;
+  transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 10px;
   font-size: .78rem; color: var(--ink-soft);
 }
 .hero__scroll-line { width: 1px; height: 40px; background: var(--line); position: relative; overflow: hidden; }
@@ -141,15 +148,13 @@
 .text-link span { transition: transform .3s var(--ease); }
 .text-link:hover span { transform: translateX(4px); }
 
-.about__stats { display: flex; flex-direction: column; gap: 28px; }
-/* Nota: le card "stat" NON hanno animazioni/hover — restano statiche come richiesto */
-.stat { display: flex; align-items: baseline; gap: 4px; flex-wrap: wrap; padding-bottom: 18px; border-bottom: 1px solid var(--line); }
+/* about__stats: layout (row centrata) definito in layout.css */
 .stat__num { font-family: var(--font-serif); font-size: 2.4rem; }
 .stat__plus { font-family: var(--font-serif); font-size: 2.4rem; color: var(--accent); }
 .stat__label { width: 100%; color: var(--ink-soft); font-size: .88rem; margin-top: 4px; }
 
 /* ---------- FILTERS ---------- */
-.filters { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 8px; }
+.filters { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-top: 8px; }
 .filter {
   padding: 9px 18px; border-radius: 999px; border: 1px solid var(--line);
   font-size: .85rem; font-weight: 600; transition: background .25s, color .25s, border-color .25s;
