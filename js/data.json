@@ -1,0 +1,215 @@
+{
+  "site": {
+    "name": "Nicola Marano",
+    "logoShort": "NM",
+    "role": "Graphic Designer & Visual Storyteller",
+    "email": "nicola@email.it",
+    "location": "Italia · disponibile da remoto",
+    "cvUrl": "CV.pdf",
+    "year": "2026"
+  },
+
+  "hero": {
+    "badge": "Disponibile per nuovi progetti",
+    "titleLines": ["Nicola", "Marano"],
+    "stamp": "NICOLA MARANO • GRAPHIC DESIGN • DAL 2020 •",
+    "stampCenter": "ND",
+    "description": "Sono un <strong>Graphic Designer</strong> di base in Italia: costruisco identità visive, editoria e packaging con un obiettivo preciso — rendere chiaro ciò che è complesso, senza perdere carattere.",
+    "primaryCta": { "label": "Guarda i progetti", "href": "#progetti" },
+    "secondaryCta": { "label": "Scarica CV", "href": "CV.pdf" }
+  },
+
+  "marquee": ["Branding", "Editoria", "Packaging", "Art Direction", "UI Design", "Illustrazione"],
+
+  "about": {
+    "eyebrow": "Chi sono",
+    "paragraphs": [
+      "Credo che un progetto visivo debba essere <em>chiaro, intenzionale e su misura</em> per chi lo guarda. Per garantire una buona esperienza, coerente in ogni suo formato — dal biglietto da visita al sito web.",
+      "È con questo obiettivo che presto attenzione alla struttura, alla gerarchia e ai dettagli tipografici. Ogni scelta cromatica, ogni spaziatura, ha una ragione. Lavoro con metodo e cerco di migliorare continuamente, mettendo al centro di ogni progetto chi lo vivrà."
+    ],
+    "linkLabel": "Scopri i progetti"
+  },
+
+  "stats": [
+    { "count": 5, "label": "Anni di esperienza" },
+    { "count": 48, "label": "Progetti realizzati" },
+    { "count": 27, "label": "Clienti soddisfatti" }
+  ],
+
+  "filters": [
+    { "key": "all", "label": "Tutti" },
+    { "key": "branding", "label": "Branding" },
+    { "key": "editoria", "label": "Editoria" },
+    { "key": "packaging", "label": "Packaging" },
+    { "key": "digital", "label": "Digital" }
+  ],
+
+  "projects": [
+    {
+      "id": "aurora-studio",
+      "title": "Aurora Studio",
+      "category": "branding",
+      "categoryLabel": "Branding · Identità visiva",
+      "year": 2024,
+      "letter": "A",
+      "mediaClass": "card__media--1",
+      "desc": "Sistema di identità completo per uno studio di interior design: logo modulare, palette calda ispirata alla luce naturale e un pattern generativo usato su carta intestata, insegne e packaging.",
+      "tools": "Illustrator, InDesign, Figma"
+    },
+    {
+      "id": "meridiano",
+      "title": "Meridiano",
+      "category": "editoria",
+      "categoryLabel": "Editoria · Impaginazione",
+      "year": 2023,
+      "letter": "M",
+      "mediaClass": "card__media--2",
+      "desc": "Redesign editoriale di una rivista di cultura indipendente: griglia a sei colonne, coppia tipografica serif/grottesca e sistema di copertine intercambiabili per ogni numero.",
+      "tools": "InDesign, Photoshop"
+    },
+    {
+      "id": "radice",
+      "title": "Radice",
+      "category": "packaging",
+      "categoryLabel": "Packaging · Illustrazione",
+      "year": 2023,
+      "letter": "R",
+      "mediaClass": "card__media--3",
+      "desc": "Packaging per una linea di prodotti biologici a km zero: illustrazioni botaniche disegnate a mano, cromie terrose distinte per ogni referenza e materiali riciclabili.",
+      "tools": "Illustrator, Procreate"
+    },
+    {
+      "id": "nimbus",
+      "title": "Nimbus",
+      "category": "digital",
+      "categoryLabel": "Digital · UI Design",
+      "year": 2022,
+      "letter": "N",
+      "mediaClass": "card__media--4",
+      "desc": "Art direction e UI per un'app meteo indipendente: sistema di illustrazioni animate per ogni condizione atmosferica e componenti riutilizzabili documentati in un design system.",
+      "tools": "Figma, After Effects"
+    },
+    {
+      "id": "selva",
+      "title": "Selva",
+      "category": "branding",
+      "categoryLabel": "Branding · Etichette",
+      "year": 2022,
+      "letter": "S",
+      "mediaClass": "card__media--5",
+      "desc": "Naming, logo e sistema di etichette per un birrificio artigianale: illustrazioni a linea singola ispirate alla fauna locale, una per ogni referenza della gamma.",
+      "tools": "Illustrator, InDesign"
+    },
+    {
+      "id": "controluce",
+      "title": "Controluce",
+      "category": "editoria",
+      "categoryLabel": "Editoria · Catalogo",
+      "year": 2021,
+      "letter": "C",
+      "mediaClass": "card__media--6",
+      "desc": "Catalogo per una mostra fotografica collettiva: layout a griglia asimmetrica pensato per dare respiro alle immagini, rilegatura a filo visibile e carta non patinata.",
+      "tools": "InDesign, Photoshop"
+    }
+  ],
+
+  "services": [
+    {
+      "title": "Brand Identity",
+      "desc": "Logo, palette, tipografia e linee guida: un sistema visivo coerente pensato per durare nel tempo e adattarsi a ogni formato.",
+      "tags": ["Logo", "Naming", "Guidelines"]
+    },
+    {
+      "title": "Editoria & Impaginazione",
+      "desc": "Riviste, cataloghi, report: griglie tipografiche curate e leggibilità come priorità, senza rinunciare al carattere.",
+      "tags": ["Riviste", "Cataloghi", "Report"]
+    },
+    {
+      "title": "Packaging",
+      "desc": "Dal concept alla prestampa: packaging che comunica il prodotto a scaffale e regge la prova della produzione reale.",
+      "tags": ["Etichette", "Illustrazione", "Prestampa"]
+    },
+    {
+      "title": "UI & Digital Design",
+      "desc": "Interfacce chiare per siti e app, con componenti documentati per collaborare senza attriti con chi sviluppa.",
+      "tags": ["UI Kit", "Prototipi", "Design System"]
+    }
+  ],
+
+  "skills": {
+    "tools": [
+      { "name": "Adobe Illustrator", "percent": 95 },
+      { "name": "Adobe InDesign", "percent": 90 },
+      { "name": "Figma", "percent": 88 },
+      { "name": "Adobe Photoshop", "percent": 85 },
+      { "name": "After Effects", "percent": 70 }
+    ],
+    "tags": [
+      "Brand Strategy", "Tipografia", "Direzione Artistica", "Illustrazione",
+      "Prestampa", "Design System", "Storytelling visivo", "Fotoritocco",
+      "Motion base", "Comunicazione"
+    ],
+    "languages": [
+      { "name": "Italiano", "level": "Madrelingua" },
+      { "name": "Inglese", "level": "C1 — Avanzato" },
+      { "name": "Spagnolo", "level": "B1 — Intermedio" }
+    ]
+  },
+
+  "experience": [
+    {
+      "year": "2023 — Oggi",
+      "role": "Senior Graphic Designer",
+      "org": "Studio Meridiano, Milano",
+      "desc": "Guida creativa su progetti di branding ed editoria per clienti nazionali, con responsabilità su concept, direzione artistica e coordinamento della prestampa."
+    },
+    {
+      "year": "2021 — 2023",
+      "role": "Graphic Designer",
+      "org": "Collettivo Controluce",
+      "desc": "Progettazione di identità visive e materiali stampa per piccole imprese e realtà culturali indipendenti, dal brief alla consegna finale."
+    },
+    {
+      "year": "2020 — 2021",
+      "role": "Junior Designer & Illustratore freelance",
+      "org": "Attività autonoma",
+      "desc": "Primi progetti di packaging e illustrazione editoriale per micro-brand locali, con focus su identità artigianali."
+    }
+  ],
+
+  "education": [
+    {
+      "year": "2017 — 2020",
+      "role": "Laurea in Design della Comunicazione",
+      "org": "Accademia di Belle Arti"
+    },
+    {
+      "year": "2021",
+      "role": "Corso avanzato di Tipografia Editoriale",
+      "org": "Scuola di Grafica"
+    }
+  ],
+
+  "certs": [
+    { "title": "Adobe Certified Professional", "meta": "Illustrator & InDesign — 2022" },
+    { "title": "Figma for Design Systems", "meta": "Certificazione online — 2023" },
+    { "title": "Corso di Color Management", "meta": "Stampa e prestampa — 2021" }
+  ],
+
+  "contact": {
+    "intro": "Raccontami cosa hai in mente: rispondo entro 48 ore con qualche domanda o una proposta di percorso.",
+    "email": "nicola@email.it",
+    "location": "Italia · disponibile da remoto",
+    "socials": [
+      { "label": "LinkedIn", "url": "#" },
+      { "label": "Instagram", "url": "#" },
+      { "label": "Behance", "url": "#" },
+      { "label": "GitHub", "url": "#" }
+    ]
+  },
+
+  "footer": {
+    "titleHtml": "Creiamo qualcosa<br>insieme",
+    "cta": { "label": "Iniziamo", "href": "#contatti" }
+  }
+}

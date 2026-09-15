@@ -247,14 +247,21 @@
     });
   }
 
+  // Parti che NON dipendono dai dati JSON: partono subito.
   document.addEventListener("DOMContentLoaded", function () {
     initNavScroll();
-    initActiveLink();
     initMobileMenu();
-    initSmoothAnchors();
-    initFilters();
-    initModal();
     initForm();
     initToTop();
   });
+
+  // Parti che dipendono dal contenuto generato da render.js
+  // (link nav, card progetto, filtri, modale):
+  // vengono richiamate manualmente da render.js dopo l'inserimento nel DOM.
+  window.PortfolioMain = {
+    initActiveLink: initActiveLink,
+    initSmoothAnchors: initSmoothAnchors,
+    initFilters: initFilters,
+    initModal: initModal
+  };
 })();

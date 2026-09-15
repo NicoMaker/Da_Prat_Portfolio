@@ -16,7 +16,6 @@
     var preloader = document.getElementById("preloader");
     var fill = document.getElementById("preloaderFill");
     var pct = document.getElementById("preloaderPct");
-    var hero = document.querySelector(".hero");
     if (!preloader) return;
 
     var progress = 0;
@@ -37,7 +36,6 @@
         if (pct) pct.textContent = "100%";
         setTimeout(function () {
           preloader.classList.add("is-hidden");
-          if (hero) hero.classList.add("is-loaded");
           document.body.style.overflow = "";
         }, 260);
         return;
@@ -59,7 +57,6 @@
     if (reduceMotion) {
       clearInterval(interval);
       preloader.classList.add("is-hidden");
-      if (hero) hero.classList.add("is-loaded");
       document.body.style.overflow = "";
     }
   }
@@ -179,10 +176,17 @@
     counters.forEach(function (el) { counterObserver.observe(el); });
   }
 
+  // Parti che NON dipendono dai dati JSON: partono subito.
   document.addEventListener("DOMContentLoaded", function () {
     initPreloader();
     initCursor();
-    initReveal();
-    initCounters();
   });
+
+  // Parti che dipendono dal contenuto generato da render.js
+  // (statistiche, elementi .reveal-up dei blocchi dinamici):
+  // vengono richiamate manualmente da render.js dopo l'inserimento nel DOM.
+  window.PortfolioAnimations = {
+    initReveal: initReveal,
+    initCounters: initCounters
+  };
 })();

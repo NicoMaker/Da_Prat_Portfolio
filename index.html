@@ -70,7 +70,7 @@
     <div class="hero__top container">
       <span class="badge">
         <span class="badge__dot"></span>
-        Disponibile per nuovi progetti
+        <span id="heroBadge"></span>
       </span>
 
       <div class="stamp" aria-hidden="true">
@@ -79,35 +79,20 @@
             <path id="stampCircle" d="M60,60 m-46,0 a46,46 0 1,1 92,0 a46,46 0 1,1 -92,0" />
           </defs>
           <text class="stamp__text">
-            <textPath href="#stampCircle" startOffset="0%">
-              NICOLA MARANO • GRAPHIC DESIGN • DAL 2020 •
-            </textPath>
+            <textPath href="#stampCircle" startOffset="0%" id="stampText"></textPath>
           </text>
           <circle cx="60" cy="60" r="20" fill="none" stroke="currentColor" stroke-width="1"/>
         </svg>
-        <span class="stamp__center">ND</span>
+        <span class="stamp__center" id="stampCenter"></span>
       </div>
     </div>
 
-    <h1 class="hero__title container">
-      <span class="reveal-line"><span class="reveal-inner">Nicola</span></span>
-      <span class="reveal-line"><span class="reveal-inner">Marano<span class="hero__accent">.</span></span></span>
-    </h1>
+    <h1 class="hero__title container" id="heroTitle"></h1>
 
     <div class="hero__bottom container">
-      <p class="hero__desc">
-        Sono un <strong>Graphic Designer</strong> di base in Italia: costruisco identità
-        visive, editoria e packaging con un obiettivo preciso — rendere
-        chiaro ciò che è complesso, senza perdere carattere.
-      </p>
+      <p class="hero__desc" id="heroDesc"></p>
 
-      <div class="hero__actions">
-        <a href="#progetti" class="btn btn--primary" data-cursor-link>
-          Guarda i progetti
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
-        <a href="CV.pdf" class="btn btn--ghost" data-cursor-link>Scarica CV</a>
-      </div>
+      <div class="hero__actions" id="heroActions"></div>
     </div>
 
     <div class="hero__scroll" aria-hidden="true">
@@ -118,54 +103,21 @@
 
   <!-- ========== MARQUEE ========== -->
   <div class="marquee">
-    <div class="marquee__track">
-      <span>Branding</span><span>—</span><span>Editoria</span><span>—</span>
-      <span>Packaging</span><span>—</span><span>Art Direction</span><span>—</span>
-      <span>UI Design</span><span>—</span><span>Illustrazione</span><span>—</span>
-      <span>Branding</span><span>—</span><span>Editoria</span><span>—</span>
-      <span>Packaging</span><span>—</span><span>Art Direction</span><span>—</span>
-      <span>UI Design</span><span>—</span><span>Illustrazione</span><span>—</span>
-    </div>
+    <div class="marquee__track" id="marqueeTrack"></div>
   </div>
 
   <!-- ========== CHI SONO / ABOUT ========== -->
   <section class="about" id="chi-sono">
     <div class="container about__grid">
       <div class="about__label reveal-up">
-        <span class="eyebrow-mark">Chi sono</span>
+        <span class="eyebrow-mark" id="aboutEyebrow"></span>
       </div>
 
-      <div class="about__text reveal-up">
-        <p>
-          Credo che un progetto visivo debba essere <em>chiaro, intenzionale e su misura</em>
-          per chi lo guarda. Per garantire una buona esperienza, coerente in ogni suo
-          formato — dal biglietto da visita al sito web.
-        </p>
-        <p>
-          È con questo obiettivo che presto attenzione alla struttura, alla
-          gerarchia e ai dettagli tipografici. Ogni scelta cromatica, ogni
-          spaziatura, ha una ragione. Lavoro con metodo e cerco di migliorare
-          continuamente, mettendo al centro di ogni progetto chi lo vivrà.
-        </p>
-        <a href="#progetti" class="text-link" data-cursor-link>
-          Scopri i progetti <span>→</span>
-        </a>
+      <div class="about__text reveal-up" id="aboutText">
+        <!-- paragrafi + link generati da render.js -->
       </div>
 
-      <div class="about__stats">
-        <div class="stat reveal-up">
-          <span class="stat__num" data-count="5">0</span><span class="stat__plus">+</span>
-          <span class="stat__label">Anni di esperienza</span>
-        </div>
-        <div class="stat reveal-up">
-          <span class="stat__num" data-count="48">0</span><span class="stat__plus">+</span>
-          <span class="stat__label">Progetti realizzati</span>
-        </div>
-        <div class="stat reveal-up">
-          <span class="stat__num" data-count="27">0</span><span class="stat__plus">+</span>
-          <span class="stat__label">Clienti soddisfatti</span>
-        </div>
-      </div>
+      <div class="about__stats" id="aboutStats"></div>
     </div>
   </section>
 
@@ -183,115 +135,11 @@
       </div>
 
       <div class="filters reveal-up" id="filters" role="tablist" aria-label="Filtra progetti">
-        <button class="filter is-active" data-filter="all" data-cursor-link>Tutti</button>
-        <button class="filter" data-filter="branding" data-cursor-link>Branding</button>
-        <button class="filter" data-filter="editoria" data-cursor-link>Editoria</button>
-        <button class="filter" data-filter="packaging" data-cursor-link>Packaging</button>
-        <button class="filter" data-filter="digital" data-cursor-link>Digital</button>
+        <!-- pulsanti generati da render.js in base a data.filters -->
       </div>
 
       <div class="grid" id="projectGrid">
-        <!-- 1 -->
-        <article class="card reveal-up" data-cat="branding" data-cursor-link
-          data-title="Aurora Studio"
-          data-year="2024"
-          data-cat-label="Branding · Identità visiva"
-          data-desc="Sistema di identità completo per uno studio di interior design: logo modulare, palette calda ispirata alla luce naturale e un pattern generativo usato su carta intestata, insegne e packaging."
-          data-tools="Illustrator, InDesign, Figma">
-          <div class="card__media card__media--1">
-            <span class="card__letter">A</span>
-          </div>
-          <div class="card__body">
-            <span class="card__cat">Branding</span>
-            <h3 class="card__title">Aurora Studio</h3>
-            <span class="card__year">2024</span>
-          </div>
-        </article>
-
-        <!-- 2 -->
-        <article class="card reveal-up" data-cat="editoria" data-cursor-link
-          data-title="Meridiano — Rivista trimestrale"
-          data-year="2023"
-          data-cat-label="Editoria · Impaginazione"
-          data-desc="Redesign editoriale di una rivista di cultura indipendente: griglia a sei colonne, coppia tipografica serif/grottesca e sistema di copertine intercambiabili per ogni numero."
-          data-tools="InDesign, Photoshop">
-          <div class="card__media card__media--2">
-            <span class="card__letter">M</span>
-          </div>
-          <div class="card__body">
-            <span class="card__cat">Editoria</span>
-            <h3 class="card__title">Meridiano</h3>
-            <span class="card__year">2023</span>
-          </div>
-        </article>
-
-        <!-- 3 -->
-        <article class="card reveal-up" data-cat="packaging" data-cursor-link
-          data-title="Radice — Linea alimentare bio"
-          data-year="2023"
-          data-cat-label="Packaging · Illustrazione"
-          data-desc="Packaging per una linea di prodotti biologici a km zero: illustrazioni botaniche disegnate a mano, cromie terrose distinte per ogni referenza e materiali riciclabili."
-          data-tools="Illustrator, Procreate">
-          <div class="card__media card__media--3">
-            <span class="card__letter">R</span>
-          </div>
-          <div class="card__body">
-            <span class="card__cat">Packaging</span>
-            <h3 class="card__title">Radice</h3>
-            <span class="card__year">2023</span>
-          </div>
-        </article>
-
-        <!-- 4 -->
-        <article class="card reveal-up" data-cat="digital" data-cursor-link
-          data-title="Nimbus — App meteo"
-          data-year="2022"
-          data-cat-label="Digital · UI Design"
-          data-desc="Art direction e UI per un'app meteo indipendente: sistema di illustrazioni animate per ogni condizione atmosferica e componenti riutilizzabili documentati in un design system."
-          data-tools="Figma, After Effects">
-          <div class="card__media card__media--4">
-            <span class="card__letter">N</span>
-          </div>
-          <div class="card__body">
-            <span class="card__cat">Digital</span>
-            <h3 class="card__title">Nimbus</h3>
-            <span class="card__year">2022</span>
-          </div>
-        </article>
-
-        <!-- 5 -->
-        <article class="card reveal-up" data-cat="branding" data-cursor-link
-          data-title="Selva — Birrificio artigianale"
-          data-year="2022"
-          data-cat-label="Branding · Etichette"
-          data-desc="Naming, logo e sistema di etichette per un birrificio artigianale: illustrazioni a linea singola ispirate alla fauna locale, una per ogni referenza della gamma."
-          data-tools="Illustrator, InDesign">
-          <div class="card__media card__media--5">
-            <span class="card__letter">S</span>
-          </div>
-          <div class="card__body">
-            <span class="card__cat">Branding</span>
-            <h3 class="card__title">Selva</h3>
-            <span class="card__year">2022</span>
-          </div>
-        </article>
-
-        <!-- 6 -->
-        <article class="card reveal-up" data-cat="editoria" data-cursor-link
-          data-title="Controluce — Catalogo mostra"
-          data-year="2021"
-          data-cat-label="Editoria · Catalogo"
-          data-desc="Catalogo per una mostra fotografica collettiva: layout a griglia asimmetrica pensato per dare respiro alle immagini, rilegatura a filo visibile e carta non patinata."
-          data-tools="InDesign, Photoshop">
-          <div class="card__media card__media--6">
-            <span class="card__letter">C</span>
-          </div>
-          <div class="card__body">
-            <span class="card__cat">Editoria</span>
-            <h3 class="card__title">Controluce</h3>
-            <span class="card__year">2021</span>
-          </div>
-        </article>
+        <!-- card progetto generate da render.js in base a data.projects -->
       </div>
     </div>
   </section>
@@ -303,28 +151,7 @@
         Come posso <span class="section-title__muted">aiutarti</span>
       </h2>
 
-      <div class="services__list">
-        <div class="service reveal-up">
-          <h3 class="service__title">Brand Identity</h3>
-          <p class="service__desc">Logo, palette, tipografia e linee guida: un sistema visivo coerente pensato per durare nel tempo e adattarsi a ogni formato.</p>
-          <div class="service__tags"><span>Logo</span><span>Naming</span><span>Guidelines</span></div>
-        </div>
-        <div class="service reveal-up">
-          <h3 class="service__title">Editoria & Impaginazione</h3>
-          <p class="service__desc">Riviste, cataloghi, report: griglie tipografiche curate e leggibilità come priorità, senza rinunciare al carattere.</p>
-          <div class="service__tags"><span>Riviste</span><span>Cataloghi</span><span>Report</span></div>
-        </div>
-        <div class="service reveal-up">
-          <h3 class="service__title">Packaging</h3>
-          <p class="service__desc">Dal concept alla prestampa: packaging che comunica il prodotto a scaffale e regge la prova della produzione reale.</p>
-          <div class="service__tags"><span>Etichette</span><span>Illustrazione</span><span>Prestampa</span></div>
-        </div>
-        <div class="service reveal-up">
-          <h3 class="service__title">UI & Digital Design</h3>
-          <p class="service__desc">Interfacce chiare per siti e app, con componenti documentati per collaborare senza attriti con chi sviluppa.</p>
-          <div class="service__tags"><span>UI Kit</span><span>Prototipi</span><span>Design System</span></div>
-        </div>
-      </div>
+      <div class="services__list" id="servicesList"></div>
     </div>
   </section>
 
@@ -333,45 +160,15 @@
     <div class="container skills__grid">
       <div class="skills__col reveal-up">
         <h2 class="section-title">Strumenti</h2>
-        <div class="skillbars">
-          <div class="skillbar">
-            <div class="skillbar__head"><span>Adobe Illustrator</span><span>95%</span></div>
-            <div class="skillbar__track"><span style="--w:95%"></span></div>
-          </div>
-          <div class="skillbar">
-            <div class="skillbar__head"><span>Adobe InDesign</span><span>90%</span></div>
-            <div class="skillbar__track"><span style="--w:90%"></span></div>
-          </div>
-          <div class="skillbar">
-            <div class="skillbar__head"><span>Figma</span><span>88%</span></div>
-            <div class="skillbar__track"><span style="--w:88%"></span></div>
-          </div>
-          <div class="skillbar">
-            <div class="skillbar__head"><span>Adobe Photoshop</span><span>85%</span></div>
-            <div class="skillbar__track"><span style="--w:85%"></span></div>
-          </div>
-          <div class="skillbar">
-            <div class="skillbar__head"><span>After Effects</span><span>70%</span></div>
-            <div class="skillbar__track"><span style="--w:70%"></span></div>
-          </div>
-        </div>
+        <div class="skillbars" id="skillBars"></div>
       </div>
 
       <div class="skills__col reveal-up">
         <h2 class="section-title">Competenze trasversali</h2>
-        <div class="tagcloud">
-          <span>Brand Strategy</span><span>Tipografia</span><span>Direzione Artistica</span>
-          <span>Illustrazione</span><span>Prestampa</span><span>Design System</span>
-          <span>Storytelling visivo</span><span>Fotoritocco</span><span>Motion base</span>
-          <span>Comunicazione</span>
-        </div>
+        <div class="tagcloud" id="skillTags"></div>
 
         <h2 class="section-title" style="margin-top:2.5rem">Lingue</h2>
-        <div class="langs">
-          <div class="lang"><span>Italiano</span><span class="lang__level">Madrelingua</span></div>
-          <div class="lang"><span>Inglese</span><span class="lang__level">C1 — Avanzato</span></div>
-          <div class="lang"><span>Spagnolo</span><span class="lang__level">B1 — Intermedio</span></div>
-        </div>
+        <div class="langs" id="skillLangs"></div>
       </div>
     </div>
   </section>
@@ -383,68 +180,16 @@
         Percorso <span class="section-title__muted">professionale</span>
       </h2>
 
-      <div class="timeline">
-        <div class="timeline__item reveal-up">
-          <span class="timeline__year">2023 — Oggi</span>
-          <h3 class="timeline__role">Senior Graphic Designer</h3>
-          <span class="timeline__org">Studio Meridiano, Milano</span>
-          <p class="timeline__desc">Guida creativa su progetti di branding ed editoria per clienti nazionali, con responsabilità su concept, direzione artistica e coordinamento della prestampa.</p>
-        </div>
-        <div class="timeline__item reveal-up">
-          <span class="timeline__year">2021 — 2023</span>
-          <h3 class="timeline__role">Graphic Designer</h3>
-          <span class="timeline__org">Collettivo Controluce</span>
-          <p class="timeline__desc">Progettazione di identità visive e materiali stampa per piccole imprese e realtà culturali indipendenti, dal brief alla consegna finale.</p>
-        </div>
-        <div class="timeline__item reveal-up">
-          <span class="timeline__year">2020 — 2021</span>
-          <h3 class="timeline__role">Junior Designer & Illustratore freelance</h3>
-          <span class="timeline__org">Attività autonoma</span>
-          <p class="timeline__desc">Primi progetti di packaging e illustrazione editoriale per micro-brand locali, con focus su identità artigianali.</p>
-        </div>
-      </div>
+      <div class="timeline" id="experienceTimeline"></div>
 
       <h2 class="section-title reveal-up" style="margin-top:4rem">
         Istruzione <span class="section-title__muted">e formazione</span>
       </h2>
 
-      <div class="timeline timeline--edu">
-        <div class="timeline__item reveal-up">
-          <span class="timeline__year">2017 — 2020</span>
-          <h3 class="timeline__role">Laurea in Design della Comunicazione</h3>
-          <span class="timeline__org">Accademia di Belle Arti</span>
-        </div>
-        <div class="timeline__item reveal-up">
-          <span class="timeline__year">2021</span>
-          <h3 class="timeline__role">Corso avanzato di Tipografia Editoriale</h3>
-          <span class="timeline__org">Scuola di Grafica</span>
-        </div>
-      </div>
+      <div class="timeline timeline--edu" id="educationTimeline"></div>
 
       <h2 class="section-title reveal-up" style="margin-top:4rem">Attestati</h2>
-      <div class="certs">
-        <div class="cert reveal-up">
-          <span class="cert__badge">✓</span>
-          <div>
-            <h4>Adobe Certified Professional</h4>
-            <span>Illustrator & InDesign — 2022</span>
-          </div>
-        </div>
-        <div class="cert reveal-up">
-          <span class="cert__badge">✓</span>
-          <div>
-            <h4>Figma for Design Systems</h4>
-            <span>Certificazione online — 2023</span>
-          </div>
-        </div>
-        <div class="cert reveal-up">
-          <span class="cert__badge">✓</span>
-          <div>
-            <h4>Corso di Color Management</h4>
-            <span>Stampa e prestampa — 2021</span>
-          </div>
-        </div>
-      </div>
+      <div class="certs" id="certsList"></div>
     </div>
   </section>
 
@@ -453,25 +198,11 @@
     <div class="container contact__grid">
       <div class="contact__intro reveal-up">
         <h2 class="section-title">Parliamo del tuo <span class="section-title__muted">progetto</span></h2>
-        <p>Raccontami cosa hai in mente: rispondo entro 48 ore con qualche domanda o una proposta di percorso.</p>
+        <p id="contactIntro"></p>
 
-        <div class="contact__info">
-          <a href="mailto:nicola@email.it" class="contact__info-item" data-cursor-link>
-            <span>Email</span>
-            <strong>nicola@email.it</strong>
-          </a>
-          <div class="contact__info-item">
-            <span>Sede</span>
-            <strong>Italia · disponibile da remoto</strong>
-          </div>
-        </div>
+        <div class="contact__info" id="contactInfo"></div>
 
-        <div class="socials">
-          <a href="#" aria-label="LinkedIn" data-cursor-link>LinkedIn</a>
-          <a href="#" aria-label="Instagram" data-cursor-link>Instagram</a>
-          <a href="#" aria-label="Behance" data-cursor-link>Behance</a>
-          <a href="#" aria-label="GitHub" data-cursor-link>GitHub</a>
-        </div>
+        <div class="socials" id="contactSocials"></div>
       </div>
 
       <form class="contact__form reveal-up" id="contactForm" novalidate>
@@ -525,11 +256,11 @@
 <!-- ========== STICKY REVEAL FOOTER ========== -->
 <footer class="footer" id="footer">
   <div class="container footer__top">
-    <h2 class="footer__title">Creiamo qualcosa<br>insieme<span class="hero__accent">.</span></h2>
-    <a href="#contatti" class="btn btn--light" data-cursor-link>Iniziamo</a>
+    <h2 class="footer__title" id="footerTitle"></h2>
+    <a href="#contatti" class="btn btn--light" id="footerCta" data-cursor-link></a>
   </div>
   <div class="container footer__bottom">
-    <span>© 2026 Nicola Marano</span>
+    <span id="footerCopy"></span>
     <button class="to-top" id="toTop" aria-label="Torna su" data-cursor-link>↑ Torna su</button>
   </div>
 </footer>
@@ -554,5 +285,6 @@
 
 <script src="js/animations.js"></script>
 <script src="js/main.js"></script>
+<script src="js/render.js"></script>
 </body>
 </html>
