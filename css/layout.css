@@ -28,20 +28,32 @@ section { position: relative; padding: 120px 0; }
   padding: 14px 32px;
   box-shadow: 0 1px 0 var(--line);
 }
+
+/* Barra colorata in base alla sezione visibile (desktop e mobile) */
+.nav__color-bar {
+  position: absolute;
+  left: 0; right: 0; bottom: -1px;
+  height: 3px;
+  background: var(--section-color, transparent);
+  transition: background-color .45s var(--ease);
+}
 .nav__logo { font-family: var(--font-serif); font-size: 1.4rem; font-weight: 600; }
 .nav__links { display: flex; gap: 32px; }
 .nav__link {
   font-size: .92rem; font-weight: 500;
   position: relative;
   padding: 4px 0;
+  transition: color .3s var(--ease);
 }
 .nav__link::after {
   content: ""; position: absolute; left: 0; bottom: 0;
-  width: 0; height: 1px; background: var(--ink);
+  width: 0; height: 1px; background: currentColor;
   transition: width .3s var(--ease);
 }
 .nav__link:hover::after,
 .nav__link.is-active::after { width: 100%; }
+/* Colora il link della sezione attiva col colore della sezione stessa */
+.nav__link.is-active { color: var(--link-color, var(--ink)); font-weight: 700; }
 .nav__cta {
   border: 1px solid var(--ink);
   border-radius: 999px;

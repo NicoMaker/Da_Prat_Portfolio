@@ -38,10 +38,25 @@
   transition: transform .5s var(--ease);
 }
 .mobile-menu.is-open { transform: translateX(0); }
+.mobile-menu__color-bar {
+  position: absolute; top: 0; left: 0; right: 0; height: 4px;
+  background: var(--section-color, var(--accent));
+  transition: background-color .45s var(--ease);
+}
 .mobile-menu__links { display: flex; flex-direction: column; gap: 22px; }
 .mobile-menu__links a {
   font-family: var(--font-serif);
   font-size: 1.6rem;
+  position: relative;
+  padding-left: 0;
+  border-left: 3px solid transparent;
+  transition: color .3s var(--ease), padding-left .3s var(--ease), border-color .3s var(--ease);
+}
+.mobile-menu__links a.is-active {
+  color: var(--link-color, var(--accent-soft));
+  padding-left: 14px;
+  border-left-color: var(--link-color, var(--accent-soft));
+  font-weight: 600;
 }
 .mobile-menu__foot { color: rgba(239,238,233,.55); font-size: .85rem; }
 
