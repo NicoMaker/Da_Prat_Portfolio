@@ -1,0 +1,22 @@
+[
+  {
+    "title": "Brand Identity",
+    "desc": "Logo, palette, tipografia e linee guida: un sistema visivo coerente pensato per durare nel tempo e adattarsi a ogni formato.",
+    "tags": ["Logo", "Naming", "Guidelines"]
+  },
+  {
+    "title": "Editoria & Impaginazione",
+    "desc": "Riviste, cataloghi, report: griglie tipografiche curate e leggibilità come priorità, senza rinunciare al carattere.",
+    "tags": ["Riviste", "Cataloghi", "Report"]
+  },
+  {
+    "title": "Packaging",
+    "desc": "Dal concept alla prestampa: packaging che comunica il prodotto a scaffale e regge la prova della produzione reale.",
+    "tags": ["Etichette", "Illustrazione", "Prestampa"]
+  },
+  {
+    "title": "UI & Digital Design",
+    "desc": "Interfacce chiare per siti e app, con componenti documentati per collaborare senza attriti con chi sviluppa.",
+    "tags": ["UI Kit", "Prototipi", "Design System"]
+  }
+]

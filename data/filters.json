@@ -1,0 +1,7 @@
+[
+  { "value": "all", "label": "Tutti" },
+  { "value": "branding", "label": "Branding" },
+  { "value": "editoria", "label": "Editoria" },
+  { "value": "packaging", "label": "Packaging" },
+  { "value": "digital", "label": "Digital" }
+]

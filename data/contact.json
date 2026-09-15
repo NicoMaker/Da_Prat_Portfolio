@@ -1,0 +1,12 @@
+{
+  "email": "info@daprat-design.it",
+  "phone": "+39 345 123 4567",
+  "location": "Veneto, Italia",
+  "availability": "Disponibile per nuovi progetti",
+  "social": [
+    { "label": "Instagram", "href": "https://instagram.com/daprat.design" },
+    { "label": "LinkedIn", "href": "https://linkedin.com/in/daprat-design" },
+    { "label": "Behance", "href": "https://behance.net/daprat" },
+    { "label": "GitHub", "href": "https://github.com/NicoMaker" }
+  ]
+}

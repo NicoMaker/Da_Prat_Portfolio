@@ -1,0 +1,62 @@
+[
+  {
+    "id": "arcobalena",
+    "title": "Arcobalena",
+    "letter": "A",
+    "category": "branding",
+    "catLabel": "Branding · Identità visiva",
+    "year": "2025",
+    "desc": "Sistema di identità completo per un atelier tessile: logo modulare, palette ispirata ai filati naturali e pattern generativo usato su carta intestata, cartellini e packaging.",
+    "tools": "Illustrator, InDesign, Figma"
+  },
+  {
+    "id": "meridiano",
+    "title": "Meridiano",
+    "letter": "M",
+    "category": "editoria",
+    "catLabel": "Editoria · Impaginazione",
+    "year": "2024",
+    "desc": "Redesign editoriale di una rivista di cultura indipendente: griglia a sei colonne, coppia tipografica serif/grottesca e sistema di copertine intercambiabili per ogni numero.",
+    "tools": "InDesign, Photoshop"
+  },
+  {
+    "id": "radice",
+    "title": "Radice",
+    "letter": "R",
+    "category": "packaging",
+    "catLabel": "Packaging · Illustrazione",
+    "year": "2024",
+    "desc": "Packaging per una linea di prodotti biologici a km zero: illustrazioni botaniche disegnate a mano, cromie terrose distinte per ogni referenza e materiali riciclabili.",
+    "tools": "Illustrator, Procreate"
+  },
+  {
+    "id": "nimbus",
+    "title": "Nimbus",
+    "letter": "N",
+    "category": "digital",
+    "catLabel": "Digital · UI Design",
+    "year": "2023",
+    "desc": "Art direction e UI per un'app meteo indipendente: sistema di illustrazioni animate per ogni condizione atmosferica e componenti riutilizzabili documentati in un design system.",
+    "tools": "Figma, After Effects"
+  },
+  {
+    "id": "selva",
+    "title": "Selva",
+    "letter": "S",
+    "category": "branding",
+    "catLabel": "Branding · Etichette",
+    "year": "2023",
+    "desc": "Naming, logo e sistema di etichette per un birrificio artigianale: illustrazioni a linea singola ispirate alla fauna locale, una per ogni referenza della gamma.",
+    "tools": "Illustrator, InDesign"
+  },
+  {
+    "id": "controluce",
+    "title": "Controluce",
+    "letter": "C",
+    "category": "editoria",
+    "catLabel": "Editoria · Catalogo",
+    "year": "2022",
+    "desc": "Catalogo per una mostra fotografica collettiva: layout a griglia asimmetrica pensato per dare respiro alle immagini, rilegatura a filo visibile e carta non patinata.",
+    "tools": "InDesign, Photoshop"
+  }
+]

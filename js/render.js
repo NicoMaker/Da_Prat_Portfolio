@@ -1,293 +1,185 @@
-/* ============================================
-   render.js
-   Carica js/data.json e popola tutte le sezioni
-   del portfolio. Deve essere caricato DOPO
-   animations.js e main.js (usa le funzioni che
-   quei file espongono su window.PortfolioAnimations
-   e window.PortfolioMain).
+/* ==========================================================
+   RENDER — popola le sezioni della pagina a partire dai JSON
+   ========================================================== */
 
-   NOTA: fetch() di un file locale richiede che la
-   pagina sia servita via http (es. `python -m http.server`,
-   Live Server, Netlify, GitHub Pages...). Aprendo
-   index.html direttamente come file:// il browser
-   blocca la richiesta per policy di sicurezza (CORS).
-============================================ */
-(function () {
-  "use strict";
+const RenderModule = (() => {
 
-  function el(html) {
-    var t = document.createElement("template");
-    t.innerHTML = html.trim();
-    return t.content;
+  function renderMeta(site) {
+    document.title = site.meta.title;
+    document.querySelector('meta[name="description"]').setAttribute("content", site.meta.description);
+    document.querySelector('meta[name="theme-color"]').setAttribute("content", site.meta.themeColor);
+    document.getElementById("navLogo").innerHTML = `${site.brand.mark}<span class="dot">.</span>`;
+    document.getElementById("footerLogo").innerHTML = `${site.brand.mark}<span class="dot">.</span>`;
+    document.getElementById("preloaderLabel").textContent = `${site.brand.mark}.`;
+    document.getElementById("stampCenter").textContent = site.brand.mark;
+    document.getElementById("stampText").textContent = site.hero.stampText;
   }
 
-  function setText(id, text) {
-    var node = document.getElementById(id);
-    if (node) node.textContent = text;
+  function renderHero(site) {
+    document.getElementById("heroBadge").innerHTML =
+      `<span class="badge__dot"></span>${site.hero.badge}`;
+
+    document.getElementById("heroTitle").innerHTML = site.hero.titleLines
+      .map((line) => `<span class="reveal-line"><span class="reveal-inner">${line}</span></span>`)
+      .join("");
+
+    document.getElementById("heroDesc").innerHTML = site.hero.description;
+
+    document.getElementById("heroActions").innerHTML = `
+      <a href="${site.hero.ctaPrimary.href}" class="btn btn--primary" data-cursor-link>
+        ${site.hero.ctaPrimary.label}
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a href="${site.hero.ctaSecondary.href}" class="btn btn--ghost" data-cursor-link>${site.hero.ctaSecondary.label}</a>
+    `;
+
+    document.getElementById("heroScrollLabel").textContent = site.hero.scrollLabel;
   }
 
-  function setHtml(id, html) {
-    var node = document.getElementById(id);
-    if (node) node.innerHTML = html;
+  function renderMarquee(site) {
+    const items = site.marquee.concat(site.marquee); // duplica per loop continuo
+    document.getElementById("marqueeTrack").innerHTML = items
+      .map((label) => `<span>${label}</span><span>—</span>`)
+      .join("");
   }
 
-  /* ---------- HERO ---------- */
-  function renderHero(data) {
-    var hero = data.hero;
-    setText("heroBadge", hero.badge);
-    setText("stampText", hero.stamp);
-    setText("stampCenter", hero.stampCenter);
-    setHtml("heroDesc", hero.description);
+  function renderAbout(site, stats) {
+    document.getElementById("aboutEyebrow").textContent = site.about.eyebrow;
 
-    var titleHtml = hero.titleLines.map(function (line, i) {
-      var isLast = i === hero.titleLines.length - 1;
-      return (
-        '<span class="reveal-line"><span class="reveal-inner">' +
-        line +
-        (isLast ? '<span class="hero__accent">.</span>' : "") +
-        "</span></span>"
-      );
-    }).join("");
-    setHtml("heroTitle", titleHtml);
+    document.getElementById("aboutText").innerHTML = site.about.paragraphs
+      .map((p) => `<p>${p}</p>`)
+      .join("") +
+      `<a href="${site.about.linkHref}" class="text-link" data-cursor-link>${site.about.linkLabel} <span>→</span></a>`;
 
-    var actionsHtml =
-      '<a href="' + hero.primaryCta.href + '" class="btn btn--primary" data-cursor-link>' +
-        hero.primaryCta.label +
-        '<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>' +
-      "</a>" +
-      '<a href="' + hero.secondaryCta.href + '" class="btn btn--ghost" data-cursor-link>' +
-        hero.secondaryCta.label +
-      "</a>";
-    setHtml("heroActions", actionsHtml);
+    /* Le card statistiche sono volutamente statiche: nessuna animazione hover */
+    document.getElementById("aboutStats").innerHTML = stats
+      .map(
+        (s) => `
+        <div class="stat">
+          <span class="stat__num" data-count="${s.count}">0</span><span class="stat__plus">${s.suffix}</span>
+          <span class="stat__label">${s.label}</span>
+        </div>`
+      )
+      .join("");
   }
 
-  /* ---------- MARQUEE (contenuto duplicato per lo scroll infinito) ---------- */
-  function renderMarquee(data) {
-    var words = data.marquee;
-    var single = words.map(function (w) { return "<span>" + w + "</span><span>—</span>"; }).join("");
-    setHtml("marqueeTrack", single + single);
+  function renderFilters(filters) {
+    document.getElementById("filters").innerHTML = filters
+      .map(
+        (f, i) =>
+          `<button class="filter${i === 0 ? " is-active" : ""}" data-filter="${f.value}" data-cursor-link>${f.label}</button>`
+      )
+      .join("");
   }
 
-  /* ---------- ABOUT ---------- */
-  function renderAbout(data) {
-    setText("aboutEyebrow", data.about.eyebrow);
-    var paragraphs = data.about.paragraphs.map(function (p) { return "<p>" + p + "</p>"; }).join("");
-    var link =
-      '<a href="#progetti" class="text-link" data-cursor-link>' +
-        data.about.linkLabel + " <span>→</span>" +
-      "</a>";
-    setHtml("aboutText", paragraphs + link);
-
-    var statsHtml = data.stats.map(function (s) {
-      return (
-        '<div class="stat reveal-up">' +
-          '<span class="stat__num" data-count="' + s.count + '">0</span>' +
-          '<span class="stat__plus">+</span>' +
-          '<span class="stat__label">' + s.label + "</span>" +
-        "</div>"
-      );
-    }).join("");
-    setHtml("aboutStats", statsHtml);
+  function renderProjects(projects) {
+    document.getElementById("projectGrid").innerHTML = projects
+      .map(
+        (p, i) => `
+        <article class="card reveal-up" data-cat="${p.category}" data-cursor-link tabindex="0"
+          data-id="${p.id}" data-title="${p.title}" data-year="${p.year}"
+          data-cat-label="${p.catLabel}" data-desc="${p.desc}" data-tools="${p.tools}">
+          <div class="card__media card__media--${(i % 6) + 1}">
+            <span class="card__letter">${p.letter}</span>
+          </div>
+          <div class="card__body">
+            <span class="card__cat">${p.catLabel.split(" · ")[0]}</span>
+            <h3 class="card__title">${p.title}</h3>
+            <span class="card__year">${p.year}</span>
+          </div>
+        </article>`
+      )
+      .join("");
   }
 
-  /* ---------- PROGETTI (filtri + card) ---------- */
-  function renderProjects(data) {
-    var filtersHtml = data.filters.map(function (f, i) {
-      return (
-        '<button class="filter' + (i === 0 ? " is-active" : "") + '" data-filter="' +
-        f.key + '" data-cursor-link>' + f.label + "</button>"
-      );
-    }).join("");
-    setHtml("filters", filtersHtml);
-
-    var cardsHtml = data.projects.map(function (p) {
-      return (
-        '<article class="card reveal-up" data-cat="' + p.category + '" data-cursor-link' +
-          ' data-title="' + p.title + '"' +
-          ' data-year="' + p.year + '"' +
-          ' data-cat-label="' + p.categoryLabel + '"' +
-          ' data-desc="' + p.desc.replace(/"/g, "&quot;") + '"' +
-          ' data-tools="' + p.tools + '">' +
-          '<div class="card__media ' + p.mediaClass + '">' +
-            '<span class="card__letter">' + p.letter + "</span>" +
-          "</div>" +
-          '<div class="card__body">' +
-            '<span class="card__cat">' + capitalize(p.category) + "</span>" +
-            '<h3 class="card__title">' + p.title + "</h3>" +
-            '<span class="card__year">' + p.year + "</span>" +
-          "</div>" +
-        "</article>"
-      );
-    }).join("");
-    setHtml("projectGrid", cardsHtml);
+  function renderServices(services) {
+    document.getElementById("servicesList").innerHTML = services
+      .map(
+        (s) => `
+        <div class="service reveal-up">
+          <h3 class="service__title">${s.title}</h3>
+          <p class="service__desc">${s.desc}</p>
+          <div class="service__tags">${s.tags.map((t) => `<span>${t}</span>`).join("")}</div>
+        </div>`
+      )
+      .join("");
   }
 
-  function capitalize(str) {
-    return str.charAt(0).toUpperCase() + str.slice(1);
+  function renderSkills(skills) {
+    document.getElementById("skillbars").innerHTML = skills
+      .map(
+        (s) => `
+        <div class="skillbar">
+          <div class="skillbar__head"><span>${s.name}</span><span>${s.level}%</span></div>
+          <div class="skillbar__track"><span style="--w:${s.level}%" data-level="${s.level}"></span></div>
+        </div>`
+      )
+      .join("");
   }
 
-  /* ---------- SERVIZI ---------- */
-  function renderServices(data) {
-    var html = data.services.map(function (s) {
-      var tags = s.tags.map(function (t) { return "<span>" + t + "</span>"; }).join("");
-      return (
-        '<div class="service reveal-up">' +
-          '<h3 class="service__title">' + s.title + "</h3>" +
-          '<p class="service__desc">' + s.desc + "</p>" +
-          '<div class="service__tags">' + tags + "</div>" +
-        "</div>"
-      );
-    }).join("");
-    setHtml("servicesList", html);
+  function renderTimeline(timeline) {
+    document.getElementById("timeline").innerHTML = timeline
+      .map(
+        (t) => `
+        <div class="timeline__item reveal-up">
+          <span class="timeline__year">${t.year}</span>
+          <h3 class="timeline__title">${t.title}</h3>
+          <p class="timeline__desc">${t.desc}</p>
+        </div>`
+      )
+      .join("");
   }
 
-  /* ---------- COMPETENZE ---------- */
-  function renderSkills(data) {
-    var tools = data.skills.tools.map(function (t) {
-      return (
-        '<div class="skillbar">' +
-          '<div class="skillbar__head"><span>' + t.name + "</span><span>" + t.percent + "%</span></div>" +
-          '<div class="skillbar__track"><span style="--w:' + t.percent + '%"></span></div>' +
-        "</div>"
-      );
-    }).join("");
-    setHtml("skillBars", tools);
+  function renderContact(site, contact) {
+    document.getElementById("contactIntro").textContent =
+      `${site.footer.ctaSub} Oppure compila il modulo qui accanto.`;
 
-    var tags = data.skills.tags.map(function (t) { return "<span>" + t + "</span>"; }).join("");
-    setHtml("skillTags", tags);
-
-    var langs = data.skills.languages.map(function (l) {
-      return '<div class="lang"><span>' + l.name + '</span><span class="lang__level">' + l.level + "</span></div>";
-    }).join("");
-    setHtml("skillLangs", langs);
+    document.getElementById("contactInfo").innerHTML = `
+      <a href="mailto:${contact.email}">${contact.email}</a>
+      <a href="tel:${contact.phone.replace(/\s/g, "")}">${contact.phone}</a>
+      <span>${contact.location}</span>
+    `;
   }
 
-  /* ---------- TIMELINE: ESPERIENZE, ISTRUZIONE, ATTESTATI ---------- */
-  function renderTimelines(data) {
-    var exp = data.experience.map(function (e) {
-      return (
-        '<div class="timeline__item reveal-up">' +
-          '<span class="timeline__year">' + e.year + "</span>" +
-          '<h3 class="timeline__role">' + e.role + "</h3>" +
-          '<span class="timeline__org">' + e.org + "</span>" +
-          '<p class="timeline__desc">' + e.desc + "</p>" +
-        "</div>"
-      );
-    }).join("");
-    setHtml("experienceTimeline", exp);
+  function renderFooter(site, contact) {
+    document.getElementById("footerCta").textContent = site.footer.cta;
+    document.getElementById("footerCtaSub").textContent = site.footer.ctaSub;
+    document.getElementById("footerCopy").textContent = site.footer.copyright;
 
-    var edu = data.education.map(function (e) {
-      return (
-        '<div class="timeline__item reveal-up">' +
-          '<span class="timeline__year">' + e.year + "</span>" +
-          '<h3 class="timeline__role">' + e.role + "</h3>" +
-          '<span class="timeline__org">' + e.org + "</span>" +
-        "</div>"
-      );
-    }).join("");
-    setHtml("educationTimeline", edu);
+    document.getElementById("footerLinks").innerHTML = site.nav
+      .map((item) => `<a href="${item.href}">${item.label}</a>`)
+      .join("");
 
-    var certs = data.certs.map(function (c) {
-      return (
-        '<div class="cert reveal-up">' +
-          '<span class="cert__badge">✓</span>' +
-          "<div>" +
-            "<h4>" + c.title + "</h4>" +
-            "<span>" + c.meta + "</span>" +
-          "</div>" +
-        "</div>"
-      );
-    }).join("");
-    setHtml("certsList", certs);
+    /* Email e cellulare richiesti in footer */
+    document.getElementById("footerContact").innerHTML = `
+      <div class="footer__contact-item">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 6h18v12H3z"/><path d="m3 7 9 6 9-6"/></svg>
+        <a href="mailto:${contact.email}">${contact.email}</a>
+      </div>
+      <div class="footer__contact-item">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L14 13l5 2v4a2 2 0 0 1-2 2C9.4 21 3 14.6 3 6a2 2 0 0 1 2-2z"/></svg>
+        <a href="tel:${contact.phone.replace(/\s/g, "")}">${contact.phone}</a>
+      </div>
+    `;
+
+    document.getElementById("footerSocial").innerHTML = contact.social
+      .map((s) => `<a href="${s.href}" target="_blank" rel="noopener">${s.label}</a>`)
+      .join("");
   }
 
-  /* ---------- CONTATTI ---------- */
-  function renderContact(data) {
-    var c = data.contact;
-    setText("contactIntro", c.intro);
-
-    var info =
-      '<a href="mailto:' + c.email + '" class="contact__info-item" data-cursor-link>' +
-        "<span>Email</span><strong>" + c.email + "</strong>" +
-      "</a>" +
-      '<div class="contact__info-item"><span>Sede</span><strong>' + c.location + "</strong></div>";
-    setHtml("contactInfo", info);
-
-    var socials = c.socials.map(function (s) {
-      return '<a href="' + s.url + '" aria-label="' + s.label + '" data-cursor-link>' + s.label + "</a>";
-    }).join("");
-    setHtml("contactSocials", socials);
-  }
-
-  /* ---------- FOOTER ---------- */
-  function renderFooter(data) {
-    setHtml("footerTitle", data.footer.titleHtml + '<span class="hero__accent">.</span>');
-    var cta = document.getElementById("footerCta");
-    if (cta) {
-      cta.textContent = data.footer.cta.label;
-      cta.setAttribute("href", data.footer.cta.href);
-    }
-    setText("footerCopy", "© " + data.site.year + " " + data.site.name);
-  }
-
-  /* ---------- ORCHESTRAZIONE ---------- */
   function renderAll(data) {
-    renderHero(data);
-    renderMarquee(data);
-    renderAbout(data);
-    renderProjects(data);
-    renderServices(data);
-    renderSkills(data);
-    renderTimelines(data);
-    renderContact(data);
-    renderFooter(data);
+    renderMeta(data.site);
+    renderHero(data.site);
+    renderMarquee(data.site);
+    renderAbout(data.site, data.stats);
+    renderFilters(data.filters);
+    renderProjects(data.projects);
+    renderServices(data.services);
+    renderSkills(data.skills);
+    renderTimeline(data.timeline);
+    renderContact(data.site, data.contact);
+    renderFooter(data.site, data.contact);
   }
 
-  function initPostRender() {
-    // riattiva le funzionalità che dipendono dagli elementi appena creati
-    if (window.PortfolioMain) {
-      window.PortfolioMain.initActiveLink();
-      window.PortfolioMain.initSmoothAnchors();
-      window.PortfolioMain.initFilters();
-      window.PortfolioMain.initModal();
-    }
-    if (window.PortfolioAnimations) {
-      window.PortfolioAnimations.initReveal();
-      window.PortfolioAnimations.initCounters();
-    }
-    // segna l'hero come "caricato" per far partire l'animazione del titolo,
-    // solo dopo che il testo è stato effettivamente inserito nel DOM
-    var hero = document.querySelector(".hero");
-    requestAnimationFrame(function () {
-      if (hero) hero.classList.add("is-loaded");
-    });
-  }
-
-  function showLoadError() {
-    var main = document.querySelector("main");
-    if (!main) return;
-    var notice = document.createElement("p");
-    notice.style.cssText = "max-width:640px;margin:6rem auto;padding:0 1.5rem;font-family:sans-serif;color:#b33;text-align:center;";
-    notice.textContent =
-      "Non è stato possibile caricare js/data.json. Se hai aperto il file direttamente " +
-      "(file://), avvia un piccolo server locale — ad es. `python -m http.server` nella " +
-      "cartella del progetto — oppure carica i file su Netlify/GitHub Pages.";
-    main.prepend(notice);
-  }
-
-  document.addEventListener("DOMContentLoaded", function () {
-    fetch("js/data.json")
-      .then(function (res) {
-        if (!res.ok) throw new Error("HTTP " + res.status);
-        return res.json();
-      })
-      .then(function (data) {
-        renderAll(data);
-        initPostRender();
-      })
-      .catch(function (err) {
-        console.error("Errore nel caricamento di data.json:", err);
-        showLoadError();
-      });
-  });
+  return { renderAll };
 })();

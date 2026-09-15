@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Nicola Marano — Graphic Designer & Visual Storyteller</title>
-<meta name="description" content="Portfolio di Nicola Marano, Graphic Designer specializzato in identità visive, editoria e packaging.">
+<title>Da Prat — Graphic Designer & Visual Storyteller</title>
+<meta name="description" content="Portfolio di Da Prat, Graphic Designer specializzato in identità visive, editoria e packaging.">
 <meta name="theme-color" content="#EFEEE9">
 
 <!-- Fonts -->
@@ -12,14 +12,16 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700&family=Archivo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/components.css">
 <link rel="stylesheet" href="css/animations.css">
 </head>
 <body>
 
 <!-- ========== PRELOADER ========== -->
 <div class="preloader" id="preloader">
-  <div class="preloader__label">NM.</div>
+  <div class="preloader__label" id="preloaderLabel">DP.</div>
   <div class="preloader__bar"><span id="preloaderFill"></span></div>
   <div class="preloader__pct" id="preloaderPct">0%</div>
 </div>
@@ -28,50 +30,34 @@
 <div class="cursor" id="cursor"></div>
 <div class="cursor-ring" id="cursorRing"></div>
 
-<!-- ========== NAV ========== -->
+<!-- ========== HEADER (componente: nav) ========== -->
 <header class="nav" id="nav">
-  <a href="#home" class="nav__logo" data-cursor-link>NM<span class="dot">.</span></a>
+  <a href="#home" class="nav__logo" data-cursor-link id="navLogo">DP<span class="dot">.</span></a>
 
-  <nav class="nav__links" id="navLinks">
-    <a href="#home" class="nav__link" data-cursor-link>Home</a>
-    <a href="#progetti" class="nav__link" data-cursor-link>Progetti</a>
-    <a href="#servizi" class="nav__link" data-cursor-link>Servizi</a>
-    <a href="#chi-sono" class="nav__link" data-cursor-link>Chi sono</a>
-    <a href="#esperienze" class="nav__link" data-cursor-link>Percorso</a>
-    <a href="#contatti" class="nav__link" data-cursor-link>Contatti</a>
-  </nav>
+  <nav class="nav__links" id="navLinks"></nav>
 
   <a href="#contatti" class="nav__cta" data-cursor-link>Scrivimi</a>
 
-  <button class="nav__burger" id="navBurger" aria-label="Apri menu" aria-expanded="false">
+  <button class="nav__burger" id="navBurger" aria-label="Apri menu" aria-expanded="false" aria-controls="mobileMenu">
     <span></span><span></span><span></span>
   </button>
 </header>
 
-<!-- ========== MOBILE MENU ========== -->
+<!-- ========== MOBILE MENU (componente) ========== -->
 <div class="mobile-menu" id="mobileMenu">
-  <a href="#home" class="mobile-menu__link">Home</a>
-  <a href="#progetti" class="mobile-menu__link">Progetti</a>
-  <a href="#servizi" class="mobile-menu__link">Servizi</a>
-  <a href="#chi-sono" class="mobile-menu__link">Chi sono</a>
-  <a href="#esperienze" class="mobile-menu__link">Percorso</a>
-  <a href="#contatti" class="mobile-menu__link">Contatti</a>
-  <div class="mobile-menu__foot">
-    <span>Disponibile per nuovi progetti</span>
-  </div>
+  <nav class="mobile-menu__links" id="mobileMenuLinks"></nav>
+  <div class="mobile-menu__foot" id="mobileMenuFoot"></div>
 </div>
+<div class="mobile-menu__backdrop" id="mobileMenuBackdrop"></div>
 
 <main>
 
-  <!-- ========== HERO ========== -->
+  <!-- ========== HERO (componente) ========== -->
   <section class="hero" id="home">
     <div class="hero__grid" aria-hidden="true"></div>
 
     <div class="hero__top container">
-      <span class="badge">
-        <span class="badge__dot"></span>
-        <span id="heroBadge"></span>
-      </span>
+      <span class="badge" id="heroBadge"><span class="badge__dot"></span></span>
 
       <div class="stamp" aria-hidden="true">
         <svg viewBox="0 0 120 120" class="stamp__svg">
@@ -79,11 +65,11 @@
             <path id="stampCircle" d="M60,60 m-46,0 a46,46 0 1,1 92,0 a46,46 0 1,1 -92,0" />
           </defs>
           <text class="stamp__text">
-            <textPath href="#stampCircle" startOffset="0%" id="stampText"></textPath>
+            <textPath href="#stampCircle" id="stampText" startOffset="0%"></textPath>
           </text>
           <circle cx="60" cy="60" r="20" fill="none" stroke="currentColor" stroke-width="1"/>
         </svg>
-        <span class="stamp__center" id="stampCenter"></span>
+        <span class="stamp__center" id="stampCenter">DP</span>
       </div>
     </div>
 
@@ -91,37 +77,34 @@
 
     <div class="hero__bottom container">
       <p class="hero__desc" id="heroDesc"></p>
-
       <div class="hero__actions" id="heroActions"></div>
     </div>
 
     <div class="hero__scroll" aria-hidden="true">
-      <span>Scorri</span>
+      <span id="heroScrollLabel">Scorri</span>
       <div class="hero__scroll-line"><i></i></div>
     </div>
   </section>
 
-  <!-- ========== MARQUEE ========== -->
+  <!-- ========== MARQUEE (componente) ========== -->
   <div class="marquee">
     <div class="marquee__track" id="marqueeTrack"></div>
   </div>
 
-  <!-- ========== CHI SONO / ABOUT ========== -->
+  <!-- ========== CHI SONO / ABOUT (componente) ========== -->
   <section class="about" id="chi-sono">
     <div class="container about__grid">
       <div class="about__label reveal-up">
         <span class="eyebrow-mark" id="aboutEyebrow"></span>
       </div>
 
-      <div class="about__text reveal-up" id="aboutText">
-        <!-- paragrafi + link generati da render.js -->
-      </div>
+      <div class="about__text reveal-up" id="aboutText"></div>
 
       <div class="about__stats" id="aboutStats"></div>
     </div>
   </section>
 
-  <!-- ========== PROGETTI ========== -->
+  <!-- ========== PROGETTI (componente) ========== -->
   <section class="work" id="progetti">
     <div class="container">
       <div class="work__head">
@@ -134,157 +117,116 @@
         </p>
       </div>
 
-      <div class="filters reveal-up" id="filters" role="tablist" aria-label="Filtra progetti">
-        <!-- pulsanti generati da render.js in base a data.filters -->
-      </div>
+      <div class="filters reveal-up" id="filters" role="tablist" aria-label="Filtra progetti"></div>
 
-      <div class="grid" id="projectGrid">
-        <!-- card progetto generate da render.js in base a data.projects -->
-      </div>
+      <div class="grid" id="projectGrid"></div>
     </div>
   </section>
 
-  <!-- ========== SERVIZI ========== -->
+  <!-- ========== SERVIZI (componente) ========== -->
   <section class="services" id="servizi">
     <div class="container">
       <h2 class="section-title reveal-up">
         Come posso <span class="section-title__muted">aiutarti</span>
       </h2>
-
       <div class="services__list" id="servicesList"></div>
     </div>
   </section>
 
-  <!-- ========== COMPETENZE ========== -->
+  <!-- ========== COMPETENZE (componente) ========== -->
   <section class="skills" id="competenze">
     <div class="container skills__grid">
       <div class="skills__col reveal-up">
         <h2 class="section-title">Strumenti</h2>
-        <div class="skillbars" id="skillBars"></div>
+        <div class="skillbars" id="skillbars"></div>
       </div>
 
-      <div class="skills__col reveal-up">
-        <h2 class="section-title">Competenze trasversali</h2>
-        <div class="tagcloud" id="skillTags"></div>
-
-        <h2 class="section-title" style="margin-top:2.5rem">Lingue</h2>
-        <div class="langs" id="skillLangs"></div>
+      <!-- ========== PERCORSO / TIMELINE (componente) ========== -->
+      <div class="skills__col reveal-up" id="percorso">
+        <h2 class="section-title">Percorso</h2>
+        <div class="timeline" id="timeline"></div>
       </div>
     </div>
   </section>
 
-  <!-- ========== ESPERIENZE / TIMELINE ========== -->
-  <section class="timeline-section" id="esperienze">
-    <div class="container">
-      <h2 class="section-title reveal-up">
-        Percorso <span class="section-title__muted">professionale</span>
-      </h2>
-
-      <div class="timeline" id="experienceTimeline"></div>
-
-      <h2 class="section-title reveal-up" style="margin-top:4rem">
-        Istruzione <span class="section-title__muted">e formazione</span>
-      </h2>
-
-      <div class="timeline timeline--edu" id="educationTimeline"></div>
-
-      <h2 class="section-title reveal-up" style="margin-top:4rem">Attestati</h2>
-      <div class="certs" id="certsList"></div>
-    </div>
-  </section>
-
-  <!-- ========== CONTATTI ========== -->
+  <!-- ========== CONTATTI (componente) ========== -->
   <section class="contact" id="contatti">
     <div class="container contact__grid">
-      <div class="contact__intro reveal-up">
+      <div class="contact__left reveal-up">
         <h2 class="section-title">Parliamo del tuo <span class="section-title__muted">progetto</span></h2>
-        <p id="contactIntro"></p>
-
+        <p class="contact__intro" id="contactIntro"></p>
         <div class="contact__info" id="contactInfo"></div>
-
-        <div class="socials" id="contactSocials"></div>
       </div>
 
-      <form class="contact__form reveal-up" id="contactForm" novalidate>
-        <div class="form-row">
-          <div class="form-field">
-            <label for="fname">Nome</label>
-            <input type="text" id="fname" name="fname" required>
-            <span class="form-error">Inserisci il tuo nome</span>
-          </div>
-          <div class="form-field">
-            <label for="lname">Cognome</label>
-            <input type="text" id="lname" name="lname" required>
-            <span class="form-error">Inserisci il tuo cognome</span>
-          </div>
+      <form class="contact__form reveal-up" id="contactForm" autocomplete="off">
+        <div class="field">
+          <label for="cfName">Nome</label>
+          <input type="text" id="cfName" name="name" required placeholder="Il tuo nome">
         </div>
-        <div class="form-row">
-          <div class="form-field">
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" required>
-            <span class="form-error">Inserisci un'email valida</span>
-          </div>
-          <div class="form-field">
-            <label for="phone">Telefono <em>(opzionale)</em></label>
-            <input type="tel" id="phone" name="phone">
-          </div>
+        <div class="field">
+          <label for="cfEmail">Email</label>
+          <input type="email" id="cfEmail" name="email" required placeholder="nome@email.it">
         </div>
-        <div class="form-field">
-          <label for="subject">Oggetto</label>
-          <input type="text" id="subject" name="subject" required>
-          <span class="form-error">Inserisci un oggetto</span>
+        <div class="field">
+          <label for="cfMessage">Messaggio</label>
+          <textarea id="cfMessage" name="message" rows="5" required placeholder="Raccontami del tuo progetto..."></textarea>
         </div>
-        <div class="form-field">
-          <label for="message">Messaggio</label>
-          <textarea id="message" name="message" rows="4" required></textarea>
-          <span class="form-error">Scrivi un messaggio</span>
-        </div>
-
-        <!-- honeypot anti-spam -->
-        <input type="text" name="website" class="hp-field" tabindex="-1" autocomplete="off">
-
-        <button type="submit" class="btn btn--primary btn--full" data-cursor-link>
+        <button type="submit" class="btn btn--primary" data-cursor-link>
           Invia messaggio
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>
-        <p class="form-success" id="formSuccess">Grazie! Il tuo messaggio è stato inviato — ti risponderò presto.</p>
+        <p class="field__note" id="formNote" aria-live="polite"></p>
       </form>
     </div>
   </section>
 
 </main>
 
-<!-- ========== STICKY REVEAL FOOTER ========== -->
+<!-- ========== FOOTER (componente) ========== -->
 <footer class="footer" id="footer">
   <div class="container footer__top">
-    <h2 class="footer__title" id="footerTitle"></h2>
-    <a href="#contatti" class="btn btn--light" id="footerCta" data-cursor-link></a>
+    <div class="footer__brand">
+      <span class="footer__logo" id="footerLogo">DP<span class="dot">.</span></span>
+      <p class="footer__cta" id="footerCta"></p>
+      <p class="footer__cta-sub" id="footerCtaSub"></p>
+    </div>
+
+    <nav class="footer__links" id="footerLinks"></nav>
+
+    <div class="footer__contact" id="footerContact">
+      <!-- email e cellulare vengono inseriti qui via JS -->
+    </div>
   </div>
+
   <div class="container footer__bottom">
     <span id="footerCopy"></span>
-    <button class="to-top" id="toTop" aria-label="Torna su" data-cursor-link>↑ Torna su</button>
+    <div class="footer__social" id="footerSocial"></div>
   </div>
 </footer>
 
-<!-- ========== PROJECT MODAL ========== -->
+<!-- ========== MODALE PROGETTO (componente) ========== -->
 <div class="modal" id="projectModal" aria-hidden="true">
-  <div class="modal__overlay" id="modalOverlay"></div>
-  <div class="modal__panel" role="dialog" aria-modal="true">
+  <div class="modal__backdrop" id="modalBackdrop"></div>
+  <div class="modal__panel" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
     <button class="modal__close" id="modalClose" aria-label="Chiudi">✕</button>
-    <div class="modal__media" id="modalMedia"><span id="modalLetter"></span></div>
-    <div class="modal__body">
-      <span class="card__cat" id="modalCat"></span>
-      <h3 id="modalTitle"></h3>
-      <p id="modalDesc"></p>
-      <div class="modal__meta">
-        <div><span>Anno</span><strong id="modalYear"></strong></div>
-        <div><span>Strumenti</span><strong id="modalTools"></strong></div>
-      </div>
+    <span class="modal__cat" id="modalCat"></span>
+    <h3 class="modal__title" id="modalTitle"></h3>
+    <span class="modal__year" id="modalYear"></span>
+    <p class="modal__desc" id="modalDesc"></p>
+    <div class="modal__tools">
+      <span class="modal__tools-label">Strumenti</span>
+      <span id="modalTools"></span>
     </div>
   </div>
 </div>
 
-<script src="js/animations.js"></script>
-<script src="js/main.js"></script>
+<script src="js/data.js"></script>
+<script src="js/nav.js"></script>
 <script src="js/render.js"></script>
+<script src="js/projects.js"></script>
+<script src="js/cursor.js"></script>
+<script src="js/animations.js"></script>
+<script src="js/contact-form.js"></script>
+<script src="js/main.js"></script>
 </body>
 </html>

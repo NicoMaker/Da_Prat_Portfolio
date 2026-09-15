@@ -1,74 +1,29 @@
-/* ============================================
-   ANIMAZIONI — scroll reveal & utility motion
-   Attivate/disattivate da js/animations.js
-   tramite IntersectionObserver (classe .is-visible)
-============================================ */
+/* ==========================================================
+   ANIMAZIONI — reveal on scroll
+   Nota: nessuna animazione hover è applicata alle sezioni
+   informative (stat / about__text): restano statiche.
+   ========================================================== */
 
-.reveal-up{
+.reveal-up {
   opacity: 0;
   transform: translateY(28px);
-  transition: opacity .8s var(--ease-soft), transform .8s var(--ease-soft);
+  transition: opacity .8s var(--ease), transform .8s var(--ease);
 }
-.reveal-up.is-visible{
+.reveal-up.is-visible {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* stagger per gruppi di card/servizi/timeline */
-.grid .card.reveal-up:nth-child(1){ transition-delay: .02s; }
-.grid .card.reveal-up:nth-child(2){ transition-delay: .08s; }
-.grid .card.reveal-up:nth-child(3){ transition-delay: .14s; }
-.grid .card.reveal-up:nth-child(4){ transition-delay: .02s; }
-.grid .card.reveal-up:nth-child(5){ transition-delay: .08s; }
-.grid .card.reveal-up:nth-child(6){ transition-delay: .14s; }
-
-.services__list .service.reveal-up:nth-child(1){ transition-delay: 0s; }
-.services__list .service.reveal-up:nth-child(2){ transition-delay: .06s; }
-.services__list .service.reveal-up:nth-child(3){ transition-delay: .12s; }
-.services__list .service.reveal-up:nth-child(4){ transition-delay: .18s; }
-
-.certs .cert.reveal-up:nth-child(1){ transition-delay: 0s; }
-.certs .cert.reveal-up:nth-child(2){ transition-delay: .08s; }
-.certs .cert.reveal-up:nth-child(3){ transition-delay: .16s; }
-
-@media (prefers-reduced-motion: reduce){
-  .reveal-up{ opacity:1; transform:none; transition:none; }
+.reveal-line .reveal-inner {
+  display: inline-block;
+  transform: translateY(110%);
+  transition: transform .9s var(--ease);
+}
+.reveal-line.is-visible .reveal-inner {
+  transform: translateY(0);
 }
 
-/* card filter fade in/out (via JS toggling [hidden]) */
-.card{
-  transition: opacity .4s var(--ease-soft), transform .4s var(--ease-soft);
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; }
+  html { scroll-behavior: auto; }
 }
-.card.is-filtering{ opacity:0; transform: scale(.96); }
-
-/* form field shake on validation error */
-@keyframes fieldShake{
-  0%,100%{ transform: translateX(0); }
-  20%{ transform: translateX(-6px); }
-  40%{ transform: translateX(6px); }
-  60%{ transform: translateX(-4px); }
-  80%{ transform: translateX(4px); }
-}
-.form-field.has-error input, .form-field.has-error textarea{
-  animation: fieldShake .4s var(--ease);
-}
-
-/* success message pop */
-@keyframes popIn{
-  from{ opacity:0; transform: translateY(6px); }
-  to{ opacity:1; transform: translateY(0); }
-}
-.form-success.is-shown{ animation: popIn .4s var(--ease-soft); }
-
-/* nav underline / mobile menu link stagger */
-.mobile-menu__link{
-  opacity:0; transform: translateY(14px);
-  transition: opacity .5s var(--ease-soft), transform .5s var(--ease-soft);
-}
-.mobile-menu.is-open .mobile-menu__link{ opacity:1; transform: translateY(0); }
-.mobile-menu.is-open .mobile-menu__link:nth-child(1){ transition-delay: .08s; }
-.mobile-menu.is-open .mobile-menu__link:nth-child(2){ transition-delay: .13s; }
-.mobile-menu.is-open .mobile-menu__link:nth-child(3){ transition-delay: .18s; }
-.mobile-menu.is-open .mobile-menu__link:nth-child(4){ transition-delay: .23s; }
-.mobile-menu.is-open .mobile-menu__link:nth-child(5){ transition-delay: .28s; }
-.mobile-menu.is-open .mobile-menu__link:nth-child(6){ transition-delay: .33s; }

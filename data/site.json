@@ -1,0 +1,45 @@
+{
+  "brand": {
+    "mark": "DP",
+    "fullName": "Da Prat",
+    "role": "Graphic Designer & Visual Storyteller",
+    "since": "2018"
+  },
+  "meta": {
+    "title": "Da Prat — Graphic Designer & Visual Storyteller",
+    "description": "Portfolio di Da Prat, Graphic Designer specializzato in identità visive, editoria e packaging.",
+    "themeColor": "#efeee9"
+  },
+  "nav": [
+    { "label": "Home", "href": "#home" },
+    { "label": "Progetti", "href": "#progetti" },
+    { "label": "Servizi", "href": "#servizi" },
+    { "label": "Chi sono", "href": "#chi-sono" },
+    { "label": "Percorso", "href": "#percorso" },
+    { "label": "Contatti", "href": "#contatti" }
+  ],
+  "hero": {
+    "badge": "Disponibile per nuovi progetti",
+    "stampText": "DA PRAT • GRAPHIC DESIGN • DAL 2018 •",
+    "titleLines": ["Da", "Prat."],
+    "description": "Sono un <strong>Graphic Designer</strong> con base in Veneto: costruisco identità visive, editoria e packaging con un obiettivo preciso — rendere chiaro ciò che è complesso, senza perdere carattere.",
+    "ctaPrimary": { "label": "Guarda i progetti", "href": "#progetti" },
+    "ctaSecondary": { "label": "Scarica CV", "href": "assets/CV.pdf" },
+    "scrollLabel": "Scorri"
+  },
+  "marquee": ["Branding", "Editoria", "Packaging", "Art Direction", "UI Design", "Illustrazione"],
+  "about": {
+    "eyebrow": "Chi sono",
+    "paragraphs": [
+      "Credo che un progetto visivo debba essere <em>chiaro, intenzionale e su misura</em> per chi lo guarda, per garantire un'esperienza coerente in ogni suo formato — dal biglietto da visita al sito web.",
+      "È con questo obiettivo che presto attenzione alla struttura, alla gerarchia e ai dettagli tipografici. Ogni scelta cromatica, ogni spaziatura, ha una ragione. Lavoro con metodo e cerco di migliorare continuamente, mettendo al centro di ogni progetto chi lo vivrà."
+    ],
+    "linkLabel": "Scopri i progetti",
+    "linkHref": "#progetti"
+  },
+  "footer": {
+    "cta": "Hai un progetto in mente?",
+    "ctaSub": "Parliamone: scrivimi una email o chiamami, rispondo sempre volentieri.",
+    "copyright": "© 2026 Da Prat. Tutti i diritti riservati."
+  }
+}

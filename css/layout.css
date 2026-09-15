@@ -1,0 +1,143 @@
+/* ==========================================================
+   LAYOUT — header, sezioni, footer, griglie
+   ========================================================== */
+
+section { position: relative; padding: 120px 0; }
+@media (max-width: 768px) { section { padding: 80px 0; } }
+
+.section-title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  margin-bottom: 48px;
+}
+.section-title__muted { color: var(--ink-soft); font-style: italic; }
+
+/* ---------- HEADER ---------- */
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 22px 32px;
+  transition: background .35s var(--ease), padding .35s var(--ease), box-shadow .35s var(--ease);
+}
+.nav.is-scrolled {
+  background: rgba(239, 238, 233, 0.85);
+  backdrop-filter: blur(10px);
+  padding: 14px 32px;
+  box-shadow: 0 1px 0 var(--line);
+}
+.nav__logo { font-family: var(--font-serif); font-size: 1.4rem; font-weight: 600; }
+.nav__links { display: flex; gap: 32px; }
+.nav__link {
+  font-size: .92rem; font-weight: 500;
+  position: relative;
+  padding: 4px 0;
+}
+.nav__link::after {
+  content: ""; position: absolute; left: 0; bottom: 0;
+  width: 0; height: 1px; background: var(--ink);
+  transition: width .3s var(--ease);
+}
+.nav__link:hover::after,
+.nav__link.is-active::after { width: 100%; }
+.nav__cta {
+  border: 1px solid var(--ink);
+  border-radius: 999px;
+  padding: 9px 20px;
+  font-size: .88rem; font-weight: 600;
+  transition: background .3s var(--ease), color .3s var(--ease);
+}
+.nav__cta:hover { background: var(--ink); color: var(--bg); }
+.nav__burger { display: none; }
+
+@media (max-width: 900px) {
+  .nav__links, .nav__cta { display: none; }
+  .nav__burger { display: flex; }
+}
+
+/* ---------- FOOTER ---------- */
+.footer { background: var(--ink); color: var(--bg); padding: 90px 0 24px; }
+.footer__top {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr 1fr;
+  gap: 48px;
+  padding-bottom: 56px;
+  border-bottom: 1px solid rgba(239,238,233,.14);
+}
+.footer__logo { font-family: var(--font-serif); font-size: 1.6rem; font-weight: 600; }
+.footer__cta { font-family: var(--font-serif); font-size: 1.4rem; margin-top: 18px; max-width: 22ch; }
+.footer__cta-sub { color: rgba(239,238,233,.6); margin-top: 10px; max-width: 34ch; font-size: .92rem; }
+.footer__links { display: flex; flex-direction: column; gap: 12px; }
+.footer__links a { font-size: .95rem; color: rgba(239,238,233,.75); transition: color .25s; }
+.footer__links a:hover { color: var(--bg); }
+.footer__contact { display: flex; flex-direction: column; gap: 14px; }
+.footer__contact-item {
+  display: flex; align-items: center; gap: 10px;
+  font-size: .95rem; color: rgba(239,238,233,.85);
+}
+.footer__contact-item .ico { width: 18px; height: 18px; flex: none; opacity: .85; }
+.footer__contact-item a:hover { color: var(--accent-soft); }
+
+.footer__bottom {
+  display: flex; align-items: center; justify-content: space-between;
+  padding-top: 24px; font-size: .82rem; color: rgba(239,238,233,.5);
+}
+.footer__social { display: flex; gap: 18px; }
+.footer__social a { color: rgba(239,238,233,.65); font-size: .82rem; }
+.footer__social a:hover { color: var(--bg); }
+
+@media (max-width: 768px) {
+  .footer__top { grid-template-columns: 1fr; gap: 32px; }
+  .footer__bottom { flex-direction: column; gap: 14px; align-items: flex-start; }
+}
+
+/* ---------- ABOUT GRID ---------- */
+.about__grid {
+  display: grid;
+  grid-template-columns: 0.7fr 1.6fr 1fr;
+  gap: 48px;
+  align-items: start;
+}
+@media (max-width: 900px) {
+  .about__grid { grid-template-columns: 1fr; }
+}
+
+/* ---------- WORK GRID ---------- */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  margin-top: 40px;
+}
+@media (max-width: 980px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 620px) { .grid { grid-template-columns: 1fr; } }
+
+/* ---------- SERVICES ---------- */
+.services__list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+  margin-top: 40px;
+}
+@media (max-width: 700px) { .services__list { grid-template-columns: 1fr; } }
+
+/* ---------- SKILLS / PERCORSO ---------- */
+.skills__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 72px;
+}
+@media (max-width: 860px) { .skills__grid { grid-template-columns: 1fr; } }
+
+/* ---------- CONTACT ---------- */
+.contact__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: start;
+}
+@media (max-width: 860px) { .contact__grid { grid-template-columns: 1fr; } }
