@@ -10,7 +10,6 @@ const RenderModule = (() => {
     document.querySelector('meta[name="theme-color"]').setAttribute("content", site.meta.themeColor);
     document.getElementById("navLogo").innerHTML = `${site.brand.mark}<span class="dot">.</span>`;
     document.getElementById("footerLogo").innerHTML = `${site.brand.mark}<span class="dot">.</span>`;
-    document.getElementById("preloaderLabel").textContent = `${site.brand.mark}.`;
     document.getElementById("stampCenter").textContent = site.brand.mark;
     document.getElementById("stampText").textContent = site.hero.stampText;
   }

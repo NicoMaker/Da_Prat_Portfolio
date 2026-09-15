@@ -1,34 +1,11 @@
 /* ==========================================================
-   ANIMATIONS — reveal on scroll, contatori, preloader
+   ANIMATIONS — reveal on scroll, contatori
    Nota: le card "stat" (sezione Chi sono) non ricevono alcun
    effetto hover, solo il conteggio iniziale al primo ingresso
    in viewport, come richiesto.
    ========================================================== */
 
 const AnimationsModule = (() => {
-
-  function runPreloader(done) {
-    const preloader = document.getElementById("preloader");
-    const fill = document.getElementById("preloaderFill");
-    const pct = document.getElementById("preloaderPct");
-    let value = 0;
-    const timer = setInterval(() => {
-      value += Math.random() * 18;
-      if (value >= 100) {
-        value = 100;
-        clearInterval(timer);
-        fill.style.width = "100%";
-        pct.textContent = "100%";
-        setTimeout(() => {
-          preloader.classList.add("is-done");
-          done && done();
-        }, 300);
-        return;
-      }
-      fill.style.width = `${value}%`;
-      pct.textContent = `${Math.floor(value)}%`;
-    }, 120);
-  }
 
   function initRevealObserver() {
     const items = document.querySelectorAll(".reveal-up, .reveal-line");
@@ -98,5 +75,5 @@ const AnimationsModule = (() => {
     initSkillbars();
   }
 
-  return { init, runPreloader };
+  return { init };
 })();

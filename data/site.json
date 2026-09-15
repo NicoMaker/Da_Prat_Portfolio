@@ -12,11 +12,11 @@
   },
   "nav": [
     { "label": "Home", "href": "#home", "color": "#c8512f" },
-    { "label": "Progetti", "href": "#progetti", "color": "#3f6fae" },
-    { "label": "Servizi", "href": "#servizi", "color": "#2e8b57" },
-    { "label": "Chi sono", "href": "#chi-sono", "color": "#a5459c" },
-    { "label": "Percorso", "href": "#percorso", "color": "#d1a13a" },
-    { "label": "Contatti", "href": "#contatti", "color": "#ba3b5e" }
+    { "label": "Progetti", "href": "#progetti", "color": "#b8873a" },
+    { "label": "Servizi", "href": "#servizi", "color": "#6b7d4f" },
+    { "label": "Chi sono", "href": "#chi-sono", "color": "#8c5383" },
+    { "label": "Percorso", "href": "#percorso", "color": "#a15d2f" },
+    { "label": "Contatti", "href": "#contatti", "color": "#47707a" }
   ],
   "hero": {
     "badge": "Disponibile per nuovi progetti",

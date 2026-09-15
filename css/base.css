@@ -73,5 +73,5 @@ p { margin: 0; }
 
 /* Nasconde il cursore custom su touch */
 @media (hover: none) {
-  .cursor, .cursor-ring { display: none !important; }
+  .cursor-ring { display: none !important; }
 }

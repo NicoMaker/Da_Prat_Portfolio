@@ -3,8 +3,6 @@
    ========================================================== */
 
 document.addEventListener("DOMContentLoaded", async () => {
-  AnimationsModule.runPreloader();
-
   try {
     const data = await DataStore.loadAll();
 
@@ -16,6 +14,5 @@ document.addEventListener("DOMContentLoaded", async () => {
     AnimationsModule.init();
   } catch (err) {
     console.error("Errore nel caricamento dei dati del portfolio:", err);
-    document.getElementById("preloader")?.classList.add("is-done");
   }
 });

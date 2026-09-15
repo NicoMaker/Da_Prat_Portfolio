@@ -1,24 +1,22 @@
 /* ==========================================================
-   CURSOR — cursore personalizzato (solo desktop / hover-capable)
+   CURSOR — anello che segue il mouse (nessun puntino centrale)
    ========================================================== */
 
 const CursorModule = (() => {
   function init() {
     if (!window.matchMedia("(hover: hover)").matches) return;
 
-    const cursor = document.getElementById("cursor");
     const ring = document.getElementById("cursorRing");
     let ringX = 0, ringY = 0, mouseX = 0, mouseY = 0;
 
     window.addEventListener("mousemove", (e) => {
-      mouseX = e.clientX; mouseY = e.clientY;
-      cursor.style.left = `${mouseX}px`;
-      cursor.style.top = `${mouseY}px`;
+      mouseX = e.clientX;
+      mouseY = e.clientY;
     });
 
     function loop() {
-      ringX += (mouseX - ringX) * 0.18;
-      ringY += (mouseY - ringY) * 0.18;
+      ringX += (mouseX - ringX) * 0.2;
+      ringY += (mouseY - ringY) * 0.2;
       ring.style.left = `${ringX}px`;
       ring.style.top = `${ringY}px`;
       requestAnimationFrame(loop);

@@ -71,34 +71,19 @@
   .mobile-menu, .mobile-menu__backdrop { display: none; }
 }
 
-/* ---------- PRELOADER ---------- */
-.preloader {
-  position: fixed; inset: 0; z-index: 999;
-  background: var(--bg);
-  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px;
-  transition: opacity .6s var(--ease), visibility .6s var(--ease);
-}
-.preloader.is-done { opacity: 0; visibility: hidden; }
-.preloader__label { font-family: var(--font-serif); font-size: 2.2rem; }
-.preloader__bar { width: 200px; height: 2px; background: var(--line); overflow: hidden; }
-.preloader__bar span { display: block; height: 100%; width: 0%; background: var(--ink); transition: width .2s linear; }
-.preloader__pct { font-size: .8rem; color: var(--ink-soft); }
-
-/* ---------- CURSOR ---------- */
-.cursor, .cursor-ring {
+/* ---------- CURSOR (solo anello, senza puntino) ---------- */
+.cursor-ring {
   position: fixed; top: 0; left: 0; pointer-events: none; z-index: 300;
   border-radius: 50%; transform: translate(-50%, -50%);
+  width: 30px; height: 30px; border: 1.5px solid var(--ink);
+  transition: width .25s var(--ease), height .25s var(--ease), border-color .25s var(--ease), background-color .25s var(--ease);
 }
-.cursor { width: 7px; height: 7px; background: var(--ink); }
-.cursor-ring {
-  width: 34px; height: 34px; border: 1px solid var(--ink);
-  transition: width .25s var(--ease), height .25s var(--ease), border-color .25s var(--ease);
-}
-.cursor-ring.is-hover { width: 54px; height: 54px; border-color: var(--accent); }
+.cursor-ring.is-hover { width: 50px; height: 50px; border-color: var(--section-color, var(--accent)); background: color-mix(in srgb, var(--section-color, var(--accent)) 10%, transparent); }
 
 /* ---------- HERO ---------- */
 .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding-top: 140px; }
-.hero__top { display: flex; align-items: flex-start; justify-content: space-between; }
+.hero__top { display: flex; align-items: flex-start; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+@media (max-width: 560px) { .stamp { width: 76px; height: 76px; } }
 .badge {
   display: inline-flex; align-items: center; gap: 8px;
   border: 1px solid var(--line); border-radius: 999px;
