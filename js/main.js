@@ -8,7 +8,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     RenderModule.renderAll(data);
     NavModule.init(data.site);
-    CursorModule.init();
     ProjectsModule.init();
     ContactFormModule.init();
     AnimationsModule.init();

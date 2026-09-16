@@ -70,9 +70,12 @@ const NavModule = (() => {
     const root = document.documentElement;
     const baseTitle = navData.meta.title;
 
-    const sections = Array.from(desktopLinks)
-      .map((l) => document.querySelector(l.getAttribute("data-href")))
-      .filter(Boolean);
+    // Elenco delle sezioni (nell'ordine dei link di navigazione), con l'elemento reale in pagina
+    const sections = navData.nav
+      .map((item) => ({ id: item.href, color: item.color, label: item.label, el: document.querySelector(item.href) }))
+      .filter((s) => s.el);
+
+    if (!sections.length) return;
 
     function setActive(id) {
       // Colora sia la nav desktop che il menu mobile in base alla sezione visibile
@@ -96,44 +99,64 @@ const NavModule = (() => {
       }
     }
 
-    // Durante un salto ad ancora (click su un link, hash nell'URL, avanti/indietro)
-    // lo scroll-spy basato su IntersectionObserver va temporaneamente "silenziato":
-    // altrimenti la sua prima lettura, calcolata mentre lo scroll è ancora in corso,
-    // sovrascrive con una sezione sbagliata quella appena impostata da syncFromHash().
-    let hashLock = false;
-    let hashLockTimer = null;
-    function lockDuringJump() {
-      hashLock = true;
-      clearTimeout(hashLockTimer);
-      hashLockTimer = setTimeout(() => { hashLock = false; }, 900);
+    // Scroll-spy basato sulla posizione di scroll: ad ogni scroll (o resize) calcola
+    // qual è l'ultima sezione il cui inizio ha già superato la linea di riferimento
+    // (appena sotto l'header fisso). Funziona sia scrollando manualmente tra le
+    // sezioni, sia saltando con un click su un link o con un #hash nell'URL —
+    // in automatico, senza bisogno di eventi separati per i due casi.
+    const HEADER_OFFSET = 140;
+    let ticking = false;
+
+    // Posizione reale della sezione rispetto al documento. Non si può usare
+    // el.offsetTop: se un antenato ha position:relative/absolute (come le
+    // <section>), offsetTop diventa relativo a quell'antenato e non alla pagina
+    // — es. #percorso, annidato dentro <section id="competenze"> che è
+    // position:relative, altrimenti risulterebbe un valore piccolo e sbagliato.
+    function docTop(el) {
+      return el.getBoundingClientRect().top + window.scrollY;
     }
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (hashLock) return;
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActive(`#${entry.target.id}`);
-          }
-        });
-      },
-      { rootMargin: "-45% 0px -50% 0px" }
-    );
-    sections.forEach((s) => observer.observe(s));
+    function computeActive() {
+      ticking = false;
+      const scrollPos = window.scrollY + HEADER_OFFSET;
+      const nearBottom = window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2;
 
-    // Un salto ad ancora (link cliccato, URL con #hash, avanti/indietro del browser)
-    // sposta la pagina istantaneamente: la sezione attiva va aggiornata subito,
-    // senza aspettare che l'observer basato sullo scroll se ne accorga.
-    function syncFromHash() {
-      const hash = window.location.hash;
-      const match = navData.nav.find((n) => n.href === hash);
-      setActive(match ? hash : "#home");
-      lockDuringJump();
+      // Importante: i link in navData.nav NON sono necessariamente nello stesso
+      // ordine in cui le sezioni compaiono nella pagina (es. "Chi sono" è nel menu
+      // prima di "Progetti" e "Servizi", ma nella pagina viene subito dopo "Home").
+      // Va quindi scelta la sezione con la posizione più bassa tra quelle già
+      // superate dallo scroll — non semplicemente l'ultima trovata nell'array del menu.
+      let current;
+      if (nearBottom) {
+        // In fondo alla pagina: la sezione più in basso è sempre quella attiva,
+        // anche se la sua "linea" non è ancora stata superata.
+        current = sections.reduce((best, s) => (docTop(s.el) > docTop(best.el) ? s : best));
+      } else {
+        current = sections.reduce((best, s) => {
+          const top = docTop(s.el);
+          if (top > scrollPos) return best;
+          if (!best || top > docTop(best.el)) return s;
+          return best;
+        }, null) || sections[0];
+      }
+      setActive(current.id);
     }
-    window.addEventListener("hashchange", syncFromHash);
+
+    function onScroll() {
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(computeActive);
+    }
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+
+    // Click su un link o cambio di #hash (avanti/indietro del browser): aggiorna
+    // subito lo stato attivo, senza aspettare il prossimo evento di scroll.
+    window.addEventListener("hashchange", computeActive);
 
     // Stato iniziale: tiene conto anche di un #hash già presente nell'URL al caricamento
-    syncFromHash();
+    computeActive();
   }
 
   function init(navData) {

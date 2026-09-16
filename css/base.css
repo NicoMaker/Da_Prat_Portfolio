@@ -23,7 +23,9 @@
 * , *::before, *::after { box-sizing: border-box; }
 
 html {
-  scroll-behavior: smooth;
+  /* Salto istantaneo tra le sezioni: niente scroll animato quando si clicca
+     un link di navigazione o si cambia l'#hash nell'URL. */
+  scroll-behavior: auto;
 }
 
 body {
@@ -79,7 +81,3 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   border-radius: 4px;
 }
 
-/* Nasconde il cursore custom su touch */
-@media (hover: none) {
-  .cursor-ring { display: none !important; }
-}
