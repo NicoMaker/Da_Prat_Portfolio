@@ -19,7 +19,6 @@
     { "label": "Contatti", "href": "#contatti", "color": "#47707a" }
   ],
   "hero": {
-    "stampText": "DA PRAT • GRAPHIC DESIGN • DAL 2018 •",
     "titleLines": ["Da Prat."],
     "description": "Sono un <strong>Graphic Designer</strong> con base in Veneto: costruisco identità visive, editoria e packaging con un obiettivo preciso — rendere chiaro ciò che è complesso, senza perdere carattere.",
     "ctaPrimary": { "label": "Guarda i progetti", "href": "#progetti" },
