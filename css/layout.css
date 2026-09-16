@@ -3,6 +3,10 @@
    ========================================================== */
 
 section { position: relative; padding: 120px 0; scroll-margin-top: 90px; }
+/* #percorso non è un <section> (è un div dentro "Competenze"), ma è comunque
+   la destinazione di un link di navigazione: serve lo stesso margine, altrimenti
+   l'header fisso lo copre completamente quando ci si salta con un click. */
+#percorso { scroll-margin-top: 90px; }
 @media (max-width: 768px) { section { padding: 80px 0; } }
 @media (max-width: 480px) { section { padding: 64px 0; } }
 
