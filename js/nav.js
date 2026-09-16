@@ -96,6 +96,16 @@ const NavModule = (() => {
         document.title = `${match.label} · ${baseTitle}`;
         // Mostra automaticamente, nell'header, in quale sezione ci si trova
         if (sectionLabel) sectionLabel.textContent = match.label;
+        // Aggiorna in automatico anche l'#hash nella barra degli indirizzi mentre
+        // si scorre (senza aggiungere una voce nella cronologia, quindi il tasto
+        // "indietro" del browser non viene intasato da ogni sezione attraversata).
+        if (window.location.hash !== id) {
+          try {
+            history.replaceState(null, "", id);
+          } catch (err) {
+            /* ignora eventuali restrizioni del browser (es. file:// in alcuni casi) */
+          }
+        }
       }
     }
 
