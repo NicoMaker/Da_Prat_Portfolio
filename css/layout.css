@@ -147,15 +147,35 @@ section { position: relative; padding: 120px 0; }
   margin: 0 auto;
 }
 .about__stats {
+  display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 36px;
+  align-items: stretch;
+  gap: 0;
   width: 100%;
+  margin-top: 8px;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
 }
 .stat {
-  display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 4px;
-  text-align: center; min-width: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  flex: 1 1 0;
+  gap: 4px;
+  text-align: center;
+  min-width: 140px;
+  padding: 28px 20px;
+  border-left: 1px solid var(--line);
+}
+.stat:first-child { border-left: none; }
+
+@media (max-width: 680px) {
+  .about__stats { flex-direction: column; }
+  .stat { border-left: none; border-top: 1px solid var(--line); }
+  .stat:first-child { border-top: none; }
 }
 
 /* ---------- WORK GRID ---------- */
