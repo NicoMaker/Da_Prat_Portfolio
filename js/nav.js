@@ -96,8 +96,21 @@ const NavModule = (() => {
       }
     }
 
+    // Durante un salto ad ancora (click su un link, hash nell'URL, avanti/indietro)
+    // lo scroll-spy basato su IntersectionObserver va temporaneamente "silenziato":
+    // altrimenti la sua prima lettura, calcolata mentre lo scroll è ancora in corso,
+    // sovrascrive con una sezione sbagliata quella appena impostata da syncFromHash().
+    let hashLock = false;
+    let hashLockTimer = null;
+    function lockDuringJump() {
+      hashLock = true;
+      clearTimeout(hashLockTimer);
+      hashLockTimer = setTimeout(() => { hashLock = false; }, 900);
+    }
+
     const observer = new IntersectionObserver(
       (entries) => {
+        if (hashLock) return;
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             setActive(`#${entry.target.id}`);
@@ -108,8 +121,19 @@ const NavModule = (() => {
     );
     sections.forEach((s) => observer.observe(s));
 
-    // Stato iniziale: Home
-    setActive("#home");
+    // Un salto ad ancora (link cliccato, URL con #hash, avanti/indietro del browser)
+    // sposta la pagina istantaneamente: la sezione attiva va aggiornata subito,
+    // senza aspettare che l'observer basato sullo scroll se ne accorga.
+    function syncFromHash() {
+      const hash = window.location.hash;
+      const match = navData.nav.find((n) => n.href === hash);
+      setActive(match ? hash : "#home");
+      lockDuringJump();
+    }
+    window.addEventListener("hashchange", syncFromHash);
+
+    // Stato iniziale: tiene conto anche di un #hash già presente nell'URL al caricamento
+    syncFromHash();
   }
 
   function init(navData) {
