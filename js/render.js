@@ -63,18 +63,24 @@ const RenderModule = (() => {
     document.getElementById("filters").innerHTML = filters
       .map(
         (f, i) =>
-          `<button class="filter${i === 0 ? " is-active" : ""}" data-filter="${f.value}" data-cursor-link>${f.label}</button>`
+          `<button class="filter${i === 0 ? " is-active" : ""}" data-filter="${f.value}" data-color="${f.color}" style="--filter-color:${f.color}" data-cursor-link>${f.label}</button>`
       )
       .join("");
   }
 
-  function renderProjects(projects) {
+  function renderProjects(projects, filters) {
+    // Mappa categoria -> colore, presa dai filtri (una sola fonte di verità per i colori)
+    const colorByCategory = {};
+    filters.forEach((f) => { colorByCategory[f.value] = f.color; });
+
     document.getElementById("projectGrid").innerHTML = projects
-      .map(
-        (p, i) => `
+      .map((p, i) => {
+        const catColor = colorByCategory[p.category] || "var(--accent)";
+        return `
         <article class="card reveal-up" data-cat="${p.category}" data-cursor-link tabindex="0"
           data-id="${p.id}" data-title="${p.title}" data-year="${p.year}"
-          data-cat-label="${p.catLabel}" data-desc="${p.desc}" data-tools="${p.tools}">
+          data-cat-label="${p.catLabel}" data-cat-color="${catColor}" data-desc="${p.desc}" data-tools="${p.tools}"
+          style="--cat-color:${catColor}">
           <div class="card__media card__media--${(i % 6) + 1}">
             <span class="card__index">${String(i + 1).padStart(2, "0")}</span>
             <span class="card__letter">${p.letter}</span>
@@ -89,8 +95,8 @@ const RenderModule = (() => {
             </div>
             <span class="card__cat">${p.catLabel.split(" · ")[0]}</span>
           </div>
-        </article>`
-      )
+        </article>`;
+      })
       .join("");
   }
 
@@ -175,7 +181,7 @@ const RenderModule = (() => {
     renderMarquee(data.site);
     renderAbout(data.site, data.stats);
     renderFilters(data.filters);
-    renderProjects(data.projects);
+    renderProjects(data.projects, data.filters);
     renderServices(data.services);
     renderSkills(data.skills);
     renderTimeline(data.timeline);

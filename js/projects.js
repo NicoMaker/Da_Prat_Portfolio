@@ -28,7 +28,9 @@ const ProjectsModule = (() => {
     const cards = document.querySelectorAll(".card");
 
     function open(card) {
-      document.getElementById("modalCat").textContent = card.getAttribute("data-cat-label");
+      const modalCat = document.getElementById("modalCat");
+      modalCat.textContent = card.getAttribute("data-cat-label");
+      modalCat.style.color = card.getAttribute("data-cat-color") || "";
       document.getElementById("modalTitle").textContent = card.getAttribute("data-title");
       document.getElementById("modalYear").textContent = card.getAttribute("data-year");
       document.getElementById("modalDesc").textContent = card.getAttribute("data-desc");

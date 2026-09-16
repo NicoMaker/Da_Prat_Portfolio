@@ -21,6 +21,7 @@ section { position: relative; padding: 120px 0; }
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 28px;
   padding: 22px 32px;
   transition: background .35s var(--ease), padding .35s var(--ease), box-shadow .35s var(--ease);
 }
@@ -43,6 +44,34 @@ section { position: relative; padding: 120px 0; }
   transition: background-color .45s var(--ease);
 }
 .nav__logo { font-family: var(--font-serif); font-size: 1.4rem; font-weight: 600; }
+
+/* Etichetta che mostra automaticamente in quale sezione ci si trova */
+.nav__section {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-right: auto;
+  padding-left: 20px;
+  border-left: 1px solid var(--line);
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--section-color, var(--ink-soft));
+  transition: color 0.4s var(--ease);
+}
+.nav__section::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+  flex: none;
+}
+@media (max-width: 1080px) {
+  .nav__section { display: none; }
+}
+
 .nav__links { display: flex; gap: 32px; }
 .nav__link {
   font-size: .92rem; font-weight: 500;

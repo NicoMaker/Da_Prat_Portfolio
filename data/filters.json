@@ -1,7 +1,7 @@
 [
-  { "value": "all", "label": "Tutti" },
-  { "value": "branding", "label": "Branding" },
-  { "value": "editoria", "label": "Editoria" },
-  { "value": "packaging", "label": "Packaging" },
-  { "value": "digital", "label": "Digital" }
+  { "value": "all", "label": "Tutti", "color": "#17181a" },
+  { "value": "branding", "label": "Branding", "color": "#c8512f" },
+  { "value": "editoria", "label": "Editoria", "color": "#47707a" },
+  { "value": "packaging", "label": "Packaging", "color": "#6b7d4f" },
+  { "value": "digital", "label": "Digital", "color": "#8c5383" }
 ]

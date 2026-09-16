@@ -66,6 +66,7 @@ const NavModule = (() => {
     const mobileLinks = document.querySelectorAll(".mobile-menu__link");
     const colorBar = document.getElementById("navColorBar");
     const mobileColorBar = document.getElementById("mobileMenuColorBar");
+    const sectionLabel = document.getElementById("navSection");
     const root = document.documentElement;
     const baseTitle = navData.meta.title;
 
@@ -90,6 +91,8 @@ const NavModule = (() => {
         if (mobileColorBar) mobileColorBar.style.background = match.color;
         // Aggiorna il titolo della pagina/scheda del browser con la sezione corrente
         document.title = `${match.label} · ${baseTitle}`;
+        // Mostra automaticamente, nell'header, in quale sezione ci si trova
+        if (sectionLabel) sectionLabel.textContent = match.label;
       }
     }
 
